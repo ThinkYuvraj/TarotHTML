@@ -1,0 +1,255 @@
+/* ==========================================================================
+   MEHER TAROT — TAILWIND CSS v4 ATELIER EXTENSIONS & 3D RIGGING
+   ========================================================================== */
+
+@theme {
+  --color-obsidian: #07050a;
+  --color-obsidian-elevated: #0c0813;
+  --color-surface: #0f0b17;
+  --color-surface-card: #120d1c;
+  --color-surface-translucent: rgba(14, 10, 22, 0.85);
+
+  --color-gold: #c5a059;
+  --color-gold-light: #e6cb87;
+  --color-gold-dark: #8c6e32;
+  --color-gold-border: rgba(197, 160, 89, 0.28);
+  --color-gold-border-subtle: rgba(197, 160, 89, 0.14);
+  --color-gold-glow: rgba(197, 160, 89, 0.2);
+
+  --color-text-primary: #f5f0e6;
+  --color-text-secondary: #a99fb7;
+  --color-text-muted: #6f667d;
+
+  --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Jost', system-ui, -apple-system, sans-serif;
+}
+
+/* Base Guardrails to prevent any icon blowout */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 85px;
+  background-color: #07050a;
+}
+
+body {
+  background-color: #07050a;
+  color: #f5f0e6;
+  font-family: 'Jost', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Crucial global rule to prevent SVG blowout */
+svg {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Stardust Background Canvas */
+#stardust-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.45;
+}
+
+/* Typography Helpers */
+.font-serif {
+  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+}
+
+.font-sans {
+  font-family: 'Jost', system-ui, -apple-system, sans-serif;
+}
+
+.italic-gold {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: #e6cb87;
+}
+
+/* Buttons */
+.btn-luxury-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  border-radius: 2px;
+  border: 1px solid rgba(197, 160, 89, 0.4);
+  color: #e6cb87;
+  background: rgba(197, 160, 89, 0.04);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-luxury-outline:hover {
+  border-color: #e6cb87;
+  color: #07050a;
+  background: #e6cb87;
+  box-shadow: 0 0 24px rgba(197, 160, 89, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-luxury-dark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 28px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  cursor: pointer;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f5f0e6;
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-luxury-dark:hover {
+  border-color: #c5a059;
+  color: #e6cb87;
+  background: rgba(197, 160, 89, 0.08);
+  transform: translateY(-1px);
+}
+
+/* 3D Interactive Tarot Rigging */
+.oracle-slots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  min-height: 420px;
+}
+
+.tarot-slot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  perspective: 1400px;
+}
+
+.slot-label {
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: #e6cb87;
+  min-height: 28px;
+}
+
+.interactive-card {
+  width: 225px;
+  height: 355px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.18, 0.9, 0.3, 1.25);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+@media (min-width: 1500px) {
+  .interactive-card {
+    width: 245px;
+    height: 385px;
+  }
+}
+
+.interactive-card:hover {
+  transform: translateY(-8px);
+}
+
+.interactive-card.revealed {
+  transform: rotateY(180deg);
+}
+
+.interactive-card.revealed:hover {
+  transform: rotateY(180deg) translateY(-8px);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+}
+
+.card-back {
+  background: #08060d;
+}
+
+.card-back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-front {
+  transform: rotateY(180deg);
+  background: #0d0917;
+}
+
+.card-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Modal Window Controls */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 2, 7, 0.92);
+  backdrop-filter: blur(12px);
+  z-index: 200;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+/* Scroll indicator animation */
+@keyframes scrollGlow {
+  0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
+  50% { opacity: 1; transform: scaleY(1); }
+}
+
+.scroll-line {
+  animation: scrollGlow 2.2s infinite ease-in-out;
+}

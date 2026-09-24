@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth bg-[#07050a] text-[#f5f0e6]">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Primary Meta Tags -->
+  <title>MEHER TAROT — Intuitive Tarot Readings & Archetypal Counsel</title>
+  <meta name="title" content="MEHER TAROT — Intuitive Tarot Readings & Archetypal Counsel">
+  <meta name="description" content="A quiet sanctuary for contemplative inquiry since 2019. Grounded, perceptive tarot readings on love, vocation, and life crossroads in English and Hindi.">
+  <meta name="keywords" content="meher tarot, intuitive tarot, luxury tarot reading, archetypal counsel, jaipur tarot, tarot consultant">
+  <meta name="author" content="Meher Tarot">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mehertarot.example/">
+  <meta property="og:title" content="MEHER TAROT — Drawn in Silence. Trusted by the Seekers.">
+  <meta property="og:description" content="Grounded, perceptive tarot readings on love, vocation, and life crossroads. Sacred space for honest inquiry since 2019.">
+  <meta property="og:image" content="assets/images/hero-tarot.jpg">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="MEHER TAROT — Intuitive Tarot Readings">
+  <meta property="twitter:description" content="A reading desk built on intuition. Private online and in-person consultations.">
+  <meta property="twitter:image" content="assets/images/hero-tarot.jpg">
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23c5a059'><path d='M13 2a9 9 0 1 0 8.94 10.06A7 7 0 0 1 13 2Z'/></svg>" type="image/svg+xml">
+
+  <!-- Google Fonts: Fraunces & Jost -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS v4 Official Browser Engine -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+  <!-- Custom Atelier Styles & 3D Interactive Rigging -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Meher Tarot",
+    "image": "assets/images/meher-portrait.jpg",
+    "description": "Intuitive tarot consultations for love, vocation, and personal crossroads.",
+    "telephone": "+919876543210",
+    "email": "hello@mehertarot.example",
+    "priceRange": "₹999 - ₹2999"
+  }
+  </script>
+</head>
+<body class="bg-[#07050a] text-[#f5f0e6] font-sans antialiased overflow-x-hidden min-h-screen">
+
+  <!-- Ambient Stardust Canvas -->
+  <canvas id="stardust-canvas"></canvas>
+
+  <!-- ==========================================
+       NAVIGATION BAR
+       ========================================== -->
+  <nav class="sticky top-0 z-50 bg-[#07050a]/90 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 py-5 flex items-center justify-between">
+      <a href="#home" class="flex flex-col group" aria-label="Meher Tarot Home">
+        <span class="font-serif text-lg font-medium tracking-[0.28em] text-white group-hover:text-[#e6cb87] transition-colors">M E H E R</span>
+        <span class="text-[0.62rem] font-medium tracking-[0.32em] text-[#c5a059] uppercase mt-0.5">T A R O T</span>
+      </a>
+
+      <button class="md:hidden bg-transparent border-none text-[#c5a059] text-2xl cursor-pointer p-1" id="nav-toggle-btn" aria-label="Toggle navigation menu">
+        &#9776;
+      </button>
+
+      <ul class="hidden md:flex items-center gap-8 list-none m-0 p-0" id="nav-links">
+        <li><a href="#home" class="text-xs font-medium tracking-[0.2em] text-[#a99fb7] hover:text-[#e6cb87] transition-colors">HOME</a></li>
+        <li><a href="#about" class="text-xs font-medium tracking-[0.2em] text-[#a99fb7] hover:text-[#e6cb87] transition-colors">ABOUT</a></li>
+        <li><a href="#offerings" class="text-xs font-medium tracking-[0.2em] text-[#a99fb7] hover:text-[#e6cb87] transition-colors">READINGS</a></li>
+        <li><a href="#oracle" class="text-xs font-medium tracking-[0.2em] text-[#a99fb7] hover:text-[#e6cb87] transition-colors">ORACLE</a></li>
+        
+        <li><a href="#reviews" class="text-xs font-medium tracking-[0.2em] text-[#a99fb7] hover:text-[#e6cb87] transition-colors">TESTIMONIALS</a></li>
+        <li><a href="#contact" class="text-xs font-medium tracking-[0.2em] text-[#a99fb7] hover:text-[#e6cb87] transition-colors">BOOK</a></li>
+        
+      </ul>
+
+      <div class="hidden md:flex items-center gap-4">
+        <a href="https://wa.me/919876543210?text=Hello%20Meher,%20I'd%20like%20to%20enquire%20about%20a%20tarot%20reading." target="_blank" rel="noopener noreferrer" class="border border-[#c5a059]/40 hover:border-[#e6cb87] px-4 py-2 text-[0.72rem] font-medium tracking-[0.2em] text-[#e6cb87] hover:bg-[#e6cb87] hover:text-[#07050a] transition-all rounded-[2px] inline-flex items-center gap-2">
+          WHATSAPP
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==========================================
+       HERO SECTION (Editorial Gemstone/Atelier style)
+       ========================================== -->
+  <header class="relative min-h-[88vh] flex items-center py-20 lg:py-28 overflow-hidden" id="home">
+    <!-- Macro tarot backdrop image blended into obsidian darkness -->
+    <div class="absolute top-0 right-0 bottom-0 w-full lg:w-[62%] h-full pointer-events-none z-0">
+      <img src="assets/images/hero-tarot.jpg" alt="Antique Tarot Cards and Compass on Midnight Velvet" class="w-full h-full object-cover object-right opacity-40 lg:opacity-80" width="1200" height="800">
+      <div class="absolute inset-0 bg-gradient-to-r from-[#07050a] via-[#07050a]/90 lg:via-[#07050a]/70 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-[#07050a] via-transparent to-[#07050a]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full relative z-10">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 text-[0.72rem] font-medium tracking-[0.24em] text-[#c5a059] uppercase mb-5">
+          <span>✦</span> INTUITIVE TAROT · SACRED ARCHETYPES · EST. 2019
+        </div>
+        <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-normal leading-[1.12] text-white mb-6">
+          Drawn in Silence.<br>
+          <span class="font-serif italic text-[#e6cb87]">Trusted by the Seekers.</span>
+        </h1>
+        <p class="text-[#a99fb7] text-base lg:text-lg leading-relaxed mb-10 max-w-xl">
+          A quiet sanctuary for contemplative inquiry since 2019. Archetypal tarot spreads for relationship clarity, vocation, and the crossroads in between — grounded in plain language, truth, and discretion.
+        </p>
+
+        <div class="flex flex-wrap gap-4 mb-12">
+          <a href="#contact" class="btn-luxury-outline">BOOK A SESSION</a>
+          <a href="https://wa.me/919876543210?text=Hello%20Meher,%20I'd%20like%20to%20enquire%20about%20a%20reading." target="_blank" rel="noopener noreferrer" class="btn-luxury-dark">ENQUIRE ON WHATSAPP</a>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <span class="inline-flex items-center px-4 py-2 border border-white/10 bg-white/[0.02] text-[0.7rem] font-medium tracking-[0.16em] uppercase text-[#a99fb7] rounded-[2px] hover:border-[#c5a059]/40 transition-colors">SINCE 2019</span>
+          <span class="inline-flex items-center px-4 py-2 border border-white/10 bg-white/[0.02] text-[0.7rem] font-medium tracking-[0.16em] uppercase text-[#a99fb7] rounded-[2px] hover:border-[#c5a059]/40 transition-colors">SACRED ARCHETYPES</span>
+          <span class="inline-flex items-center px-4 py-2 border border-white/10 bg-white/[0.02] text-[0.7rem] font-medium tracking-[0.16em] uppercase text-[#a99fb7] rounded-[2px] hover:border-[#c5a059]/40 transition-colors">CONFIDENTIAL COUNSEL</span>
+          <span class="inline-flex items-center px-4 py-2 border border-white/10 bg-white/[0.02] text-[0.7rem] font-medium tracking-[0.16em] uppercase text-[#a99fb7] rounded-[2px] hover:border-[#c5a059]/40 transition-colors">VIDEO & STUDIO</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2.5 z-10">
+      <span class="text-[0.62rem] font-medium tracking-[0.3em] uppercase text-[#c5a059]">SCROLL</span>
+      <div class="w-px h-9 bg-gradient-to-b from-[#c5a059] to-transparent scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       ABOUT / STORY SECTION (A gemstone desk built on garnet style)
+       ========================================== -->
+  <section class="py-16 lg:py-20 border-t border-white/10 bg-[#0c0813] relative z-10" id="about">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <div class="lg:col-span-5 relative">
+          <div class="border border-[#c5a059]/30 p-3 bg-[#120d1c] shadow-2xl relative">
+            <img src="assets/images/meher-portrait.jpg" alt="Meher at her reading desk" class="w-full h-[460px] lg:h-[520px] object-cover" width="500" height="580" loading="lazy">
+            <div class="absolute top-7 left-7 border border-[#c5a059] w-12 h-12 rounded-full flex items-center justify-center font-serif text-lg text-[#e6cb87] bg-[#07050a]/70 backdrop-blur-md">
+              M
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="inline-flex items-center gap-2 text-[0.72rem] font-medium tracking-[0.22em] text-[#c5a059] uppercase mb-4">
+            <span>✦</span> SINCE 2019 · THE SANCTUARY
+          </div>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-6">
+            A reading desk built on intuition.
+          </h2>
+          <p class="text-[#a99fb7] text-base leading-relaxed mb-5">
+            Meher began reading professionally in 2019, following nearly a decade of dedicated study into archetypal symbols, hermetic philosophy, and intuitive discernment. Her sanctuary was founded on a singular standard: no theatrical smoke, no fear-mongering scripts, and no vague generalizations.
+          </p>
+          <p class="text-[#a99fb7] text-base leading-relaxed mb-8">
+            Every session treats the tarot deck as a precision lens—naming what is already in subtle motion, exposing unconscious blind spots, and offering grounded choices you can carry into the real world.
+          </p>
+
+          <div class="grid grid-cols-3 gap-6 py-7 border-y border-white/10 my-8">
+            <div>
+              <div class="font-serif text-3xl lg:text-4xl text-white mb-1.5">5+</div>
+              <div class="text-[0.68rem] font-medium tracking-[0.2em] text-[#c5a059] uppercase">YEARS READING</div>
+            </div>
+            <div>
+              <div class="font-serif text-3xl lg:text-4xl text-white mb-1.5">500+</div>
+              <div class="text-[0.68rem] font-medium tracking-[0.2em] text-[#c5a059] uppercase">CLIENT SESSIONS</div>
+            </div>
+            <div>
+              <div class="font-serif text-3xl lg:text-4xl text-white mb-1.5">6</div>
+              <div class="text-[0.68rem] font-medium tracking-[0.2em] text-[#c5a059] uppercase">SPREAD LINES</div>
+            </div>
+          </div>
+
+          <a href="#offerings" class="inline-flex items-center gap-2 font-serif text-base italic text-[#e6cb87] hover:gap-3 transition-all border-b border-transparent hover:border-[#e6cb87]">
+            EXPLORE THE SPREAD LINES <span>&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       OFFERINGS / SERVICES (Garnet leads. Six lines follow style)
+       ========================================== -->
+  <section class="py-16 lg:py-20 border-t border-white/10 bg-[#07050a] relative z-10" id="offerings">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <div class="inline-flex items-center gap-2 text-[0.72rem] font-medium tracking-[0.22em] text-[#c5a059] uppercase mb-4">
+          <span>✦</span> THE READINGS
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-4">
+          Intuition leads. Six journeys follow.
+        </h2>
+        <p class="text-[#a99fb7] text-base leading-relaxed">
+          Every consultation opens with your real question. Spreads are tailored to illuminate specific dynamics with clarity and candid discernment.
+        </p>
+      </div>
+
+      <!-- 3x2 Grid identical to reference screenshot -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-12">
+        <!-- Offering 1: Love & Relationships -->
+        <div class="bg-[#120d1c] border border-white/10 hover:border-[#c5a059]/40 transition-all duration-300 rounded-[2px] overflow-hidden flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-[#08050e]">
+            <img src="assets/images/card-the-lovers.jpg" alt="Love & Relationship Reading" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#120d1c] via-transparent to-transparent"></div>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="text-[0.66rem] font-medium tracking-[0.18em] uppercase text-[#c5a059] mb-2">RELATIONSHIPS · 30 MIN</div>
+            <h3 class="font-serif text-xl text-white mb-3">Love & Emotional Currents</h3>
+            <p class="text-[#a99fb7] text-sm leading-relaxed mb-5 flex-grow">
+              For clarity on where two energies stand, unspoken expectations, mutual blocks, or finding peace after a chapter has concluded.
+            </p>
+            <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-2">
+              <span class="font-serif text-xl text-[#e6cb87]">₹999</span>
+              <button type="button" class="btn-select-service text-xs font-medium tracking-wider uppercase text-[#a99fb7] hover:text-[#e6cb87] bg-transparent border-none cursor-pointer flex items-center gap-1.5 transition-colors" data-service="love">
+                RESERVE SESSION <span>&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offering 2: Career & Purpose (Flagship) -->
+        <div class="bg-[#120d1c] border border-[#c5a059]/40 hover:border-[#e6cb87] transition-all duration-300 rounded-[2px] overflow-hidden flex flex-col group shadow-lg shadow-[#c5a059]/5">
+          <div class="h-56 overflow-hidden relative bg-[#08050e]">
+            <img src="assets/images/card-wheel-of-fortune.jpg" alt="Career & Purpose Tarot Spread" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#120d1c] via-transparent to-transparent"></div>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="text-[0.66rem] font-medium tracking-[0.18em] uppercase text-[#e6cb87] mb-2">OUR FLAGSHIP · 45 MIN</div>
+            <h3 class="font-serif text-xl text-white mb-3">Career & Strategic Purpose</h3>
+            <p class="text-[#a99fb7] text-sm leading-relaxed mb-5 flex-grow">
+              For pivotal decisions in vocation, contracts, leadership transitions, and aligning your authentic ambition with market timing.
+            </p>
+            <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-2">
+              <span class="font-serif text-xl text-[#e6cb87]">₹1,499</span>
+              <button type="button" class="btn-select-service text-xs font-medium tracking-wider uppercase text-[#e6cb87] hover:text-white bg-transparent border-none cursor-pointer flex items-center gap-1.5 transition-colors" data-service="career">
+                RESERVE SESSION <span>&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offering 3: Life Path Consultation -->
+        <div class="bg-[#120d1c] border border-white/10 hover:border-[#c5a059]/40 transition-all duration-300 rounded-[2px] overflow-hidden flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-[#08050e]">
+            <img src="assets/images/card-high-priestess.jpg" alt="Life Path Tarot Consultation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#120d1c] via-transparent to-transparent"></div>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="text-[0.66rem] font-medium tracking-[0.18em] uppercase text-[#c5a059] mb-2">PANORAMIC · 60 MIN</div>
+            <h3 class="font-serif text-xl text-white mb-3">Life Path & Shadow Archetype</h3>
+            <p class="text-[#a99fb7] text-sm leading-relaxed mb-5 flex-grow">
+              A comprehensive panoramic consultation examining overarching spiritual cycles, subconscious resistance, and next horizons.
+            </p>
+            <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-2">
+              <span class="font-serif text-xl text-[#e6cb87]">₹1,999</span>
+              <button type="button" class="btn-select-service text-xs font-medium tracking-wider uppercase text-[#a99fb7] hover:text-[#e6cb87] bg-transparent border-none cursor-pointer flex items-center gap-1.5 transition-colors" data-service="lifepath">
+                RESERVE SESSION <span>&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offering 4: Yearly 12-Month Forecast -->
+        <div class="bg-[#120d1c] border border-white/10 hover:border-[#c5a059]/40 transition-all duration-300 rounded-[2px] overflow-hidden flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-[#08050e]">
+            <img src="assets/images/card-the-sun.jpg" alt="Yearly 12-Month Tarot Forecast" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#120d1c] via-transparent to-transparent"></div>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="text-[0.66rem] font-medium tracking-[0.18em] uppercase text-[#c5a059] mb-2">ANNUAL ARCHITECTURE · 75 MIN</div>
+            <h3 class="font-serif text-xl text-white mb-3">Yearly 12-Month Forecast</h3>
+            <p class="text-[#a99fb7] text-sm leading-relaxed mb-5 flex-grow">
+              Twelve cards, one for each month ahead. The overarching tides, seasonal turning points, and key challenges mapped into a personal guide.
+            </p>
+            <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-2">
+              <span class="font-serif text-xl text-[#e6cb87]">₹2,999</span>
+              <button type="button" class="btn-select-service text-xs font-medium tracking-wider uppercase text-[#a99fb7] hover:text-[#e6cb87] bg-transparent border-none cursor-pointer flex items-center gap-1.5 transition-colors" data-service="yearly">
+                RESERVE SESSION <span>&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offering 5: Crossroads & Decision Protocol -->
+        <div class="bg-[#120d1c] border border-white/10 hover:border-[#c5a059]/40 transition-all duration-300 rounded-[2px] overflow-hidden flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-[#08050e]">
+            <img src="assets/images/card-the-star.jpg" alt="Crossroads & Decision Protocol" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#120d1c] via-transparent to-transparent"></div>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="text-[0.66rem] font-medium tracking-[0.18em] uppercase text-[#c5a059] mb-2">DECISION AUDIT · 45 MIN</div>
+            <h3 class="font-serif text-xl text-white mb-3">Crossroads & Decision Protocol</h3>
+            <p class="text-[#a99fb7] text-sm leading-relaxed mb-5 flex-grow">
+              When torn between two irreconcilable paths. We dissect Path A versus Path B with outcome forecasts and hidden consequences.
+            </p>
+            <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-2">
+              <span class="font-serif text-xl text-[#e6cb87]">₹1,499</span>
+              <button type="button" class="btn-select-service text-xs font-medium tracking-wider uppercase text-[#a99fb7] hover:text-[#e6cb87] bg-transparent border-none cursor-pointer flex items-center gap-1.5 transition-colors" data-service="crossroads">
+                RESERVE SESSION <span>&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offering 6: Dreams & Intuitive Unconscious -->
+        <div class="bg-[#120d1c] border border-white/10 hover:border-[#c5a059]/40 transition-all duration-300 rounded-[2px] overflow-hidden flex flex-col group">
+          <div class="h-56 overflow-hidden relative bg-[#08050e]">
+            <img src="assets/images/card-the-moon.jpg" alt="Dreams & Unconscious Archetypes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#120d1c] via-transparent to-transparent"></div>
+          </div>
+          <div class="p-6 flex flex-col flex-grow">
+            <div class="text-[0.66rem] font-medium tracking-[0.18em] uppercase text-[#c5a059] mb-2">DREAMSCAPE · 30 MIN</div>
+            <h3 class="font-serif text-xl text-white mb-3">Dreams & Unconscious Ground</h3>
+            <p class="text-[#a99fb7] text-sm leading-relaxed mb-5 flex-grow">
+              Decoding recurrent dreams, unexplained gut impressions, and navigating periods of temporary fog with steady esoteric grounding.
+            </p>
+            <div class="flex items-center justify-between border-t border-white/10 pt-4 mt-2">
+              <span class="font-serif text-xl text-[#e6cb87]">₹999</span>
+              <button type="button" class="btn-select-service text-xs font-medium tracking-wider uppercase text-[#a99fb7] hover:text-[#e6cb87] bg-transparent border-none cursor-pointer flex items-center gap-1.5 transition-colors" data-service="dreams">
+                RESERVE SESSION <span>&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href="#contact" class="btn-luxury-outline">RESERVE A READING</a>
+        <a href="https://wa.me/919876543210?text=Hello%20Meher,%20I'd%20like%20to%20chat%20about%20your%20readings." target="_blank" rel="noopener noreferrer" class="btn-luxury-dark">CHAT ON WHATSAPP</a>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================
+       INTERACTIVE ORACLE ATELIER (The Digital Altar)
+       ========================================== -->
+  <section class="py-16 lg:py-20 border-t border-white/10 bg-[#07050a] relative z-10" id="oracle">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <div class="inline-flex items-center gap-2 text-[0.72rem] font-medium tracking-[0.22em] text-[#c5a059] uppercase mb-4">
+          <span>✦</span> THE DIGITAL ALTAR
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-4">
+          Pause. Inquire. Draw.
+        </h2>
+        <p class="text-[#a99fb7] text-base leading-relaxed">
+          Center your attention on what is presently unresolved. Click an unrevealed card to experience immediate archetypal resonance.
+        </p>
+      </div>
+
+      <div class="border border-[#c5a059]/30 bg-[#0f0b17]/80 backdrop-blur-md p-8 lg:p-14 text-center rounded-[2px] shadow-2xl">
+        <div class="inline-flex border border-white/10 bg-black/40 p-1 rounded-[2px] gap-1 mb-10">
+          <button class="bg-[#c5a059]/30 text-white border border-[#c5a059] text-xs font-medium tracking-wider uppercase px-5 py-2.5 cursor-pointer transition-all rounded-[2px]" id="tab-single">
+            DAILY CARD (1 CARD)
+          </button>
+          <button class="bg-transparent text-[#a99fb7] border-none text-xs font-medium tracking-wider uppercase px-5 py-2.5 cursor-pointer hover:text-white transition-all rounded-[2px]" id="tab-three">
+            PAST / PRESENT / FUTURE (3 CARDS)
+          </button>
+        </div>
+
+        <div class="oracle-slots-container mb-8" id="reading-deck-container">
+          <!-- Dynamically populated 3D flip cards with golden backing -->
+        </div>
+
+        <div class="flex justify-center gap-4 flex-wrap">
+          <button class="btn-luxury-dark" id="reshuffle-btn">
+            RESHUFFLE & DRAW NEW CARDS
+          </button>
+          <a href="#contact" class="btn-luxury-outline">
+            BOOK IN-DEPTH CONSULTATION
+          </a>
+        </div>
+
+        <div class="reading-interpretation-box mt-10 p-8 bg-[#0e0a16]/90 border border-[#c5a059]/30 text-left rounded-[2px]" id="reading-result-box">
+          <!-- Interpreted text injected by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================
+       TESTIMONIALS
+       ========================================== -->
+  <section class="py-16 lg:py-20 border-t border-white/10 bg-[#07050a] relative z-10" id="reviews">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="max-w-2xl mb-14">
+        <div class="inline-flex items-center gap-2 text-[0.72rem] font-medium tracking-[0.22em] text-[#c5a059] uppercase mb-4">
+          <span>✦</span> TESTIMONIALS
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-4">
+          Words from those who sat across.
+        </h2>
+        <p class="text-[#a99fb7] text-base leading-relaxed">Reflections from executives, creatives, and seekers across three continents.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-[#120d1c] border border-white/10 p-8 rounded-[2px] flex flex-col justify-between">
+          <div>
+            <div class="text-[#c5a059] text-sm tracking-widest mb-4">★★★★★</div>
+            <p class="font-serif italic text-[#f5f0e6] text-base leading-relaxed mb-6">
+              "I've sat with Meher three times over two years. Every single reading unknots what I haven't been able to say out loud. Sharp, humane, and deeply calming."
+            </p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <h4 class="text-sm font-medium text-[#e6cb87]">Priya M.</h4>
+            <span class="text-xs uppercase tracking-wider text-[#6f667d]">Creative Director · Mumbai</span>
+          </div>
+        </div>
+
+        <div class="bg-[#120d1c] border border-white/10 p-8 rounded-[2px] flex flex-col justify-between">
+          <div>
+            <div class="text-[#c5a059] text-sm tracking-widest mb-4">★★★★★</div>
+            <p class="font-serif italic text-[#f5f0e6] text-base leading-relaxed mb-6">
+              "No theatrical spirals. Just incisive archetypal clarity that immediately mapped to our team's expansion crossroads. Essential counsel."
+            </p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <h4 class="text-sm font-medium text-[#e6cb87]">Arjun K.</h4>
+            <span class="text-xs uppercase tracking-wider text-[#6f667d]">Venture Founder · Bengaluru</span>
+          </div>
+        </div>
+
+        <div class="bg-[#120d1c] border border-white/10 p-8 rounded-[2px] flex flex-col justify-between">
+          <div>
+            <div class="text-[#c5a059] text-sm tracking-widest mb-4">★★★★★</div>
+            <p class="font-serif italic text-[#f5f0e6] text-base leading-relaxed mb-6">
+              "The 12-Month Yearly Forecast provided an invaluable cadence for the whole season. Her insights continue to ring true months later."
+            </p>
+          </div>
+          <div class="border-t border-white/10 pt-4">
+            <h4 class="text-sm font-medium text-[#e6cb87]">Sana R.</h4>
+            <span class="text-xs uppercase tracking-wider text-[#6f667d]">Architect · New Delhi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================
+       BOOKING & CONTACT (Atelier Reservation)
+       ========================================== -->
+  <section class="py-16 lg:py-20 border-t border-white/10 bg-[#07050a] relative z-10" id="contact">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+        <div class="lg:col-span-5">
+          <div class="inline-flex items-center gap-2 text-[0.72rem] font-medium tracking-[0.22em] text-[#c5a059] uppercase mb-4">
+            <span>✦</span> APPOINTMENTS & INQUIRIES
+          </div>
+          <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-4">
+            Reserve your session.
+          </h2>
+          <p class="text-[#a99fb7] text-base leading-relaxed mb-8">
+            Select your reading parameters below. Meher personally reviews each inquiry and coordinates calendar confirmation within 24 hours.
+          </p>
+
+          <div class="space-y-6">
+            <div class="flex items-center gap-4">
+              <div class="w-11 h-11 border border-[#c5a059]/40 flex items-center justify-center text-[#e6cb87] bg-[#c5a059]/5 shrink-0 rounded-[2px]">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4 shrink-0"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              </div>
+              <div>
+                <div class="text-sm font-medium text-white">Direct Dispatch</div>
+                <div class="text-xs text-[#a99fb7]">hello@mehertarot.example</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-11 h-11 border border-[#c5a059]/40 flex items-center justify-center text-[#e6cb87] bg-[#c5a059]/5 shrink-0 rounded-[2px]">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4 shrink-0"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div>
+                <div class="text-sm font-medium text-white">Response Cadence</div>
+                <div class="text-xs text-[#a99fb7]">Within 24 business hours</div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <div class="w-11 h-11 border border-[#c5a059]/40 flex items-center justify-center text-[#e6cb87] bg-[#c5a059]/5 shrink-0 rounded-[2px]">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4 shrink-0"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+              </div>
+              <div>
+                <div class="text-sm font-medium text-white">Format Options</div>
+                <div class="text-xs text-[#a99fb7]">Google Meet / Zoom or Studio Visit</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="border border-[#c5a059]/40 bg-[#120d1c] p-8 sm:p-10 rounded-[2px] shadow-2xl">
+            <form id="booking-form" class="space-y-5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="name" class="block text-[0.72rem] font-medium tracking-[0.16em] uppercase text-[#c5a059] mb-2">YOUR NAME *</label>
+                  <input type="text" id="name" placeholder="Aanya Sharma" required class="w-full bg-black/40 border border-white/10 focus:border-[#c5a059] text-white px-4 py-3 text-sm rounded-[2px] outline-none transition-colors">
+                </div>
+                <div>
+                  <label for="email" class="block text-[0.72rem] font-medium tracking-[0.16em] uppercase text-[#c5a059] mb-2">EMAIL ADDRESS *</label>
+                  <input type="email" id="email" placeholder="aanya@example.com" required class="w-full bg-black/40 border border-white/10 focus:border-[#c5a059] text-white px-4 py-3 text-sm rounded-[2px] outline-none transition-colors">
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="reading-type" class="block text-[0.72rem] font-medium tracking-[0.16em] uppercase text-[#c5a059] mb-2">READING SPREAD *</label>
+                  <select id="reading-type" class="w-full bg-black/40 border border-white/10 focus:border-[#c5a059] text-white px-4 py-3 text-sm rounded-[2px] outline-none transition-colors">
+                    <option value="love">Love & Relationships — 30 min</option>
+                    <option value="career" selected>Career & Purpose — 45 min</option>
+                    <option value="lifepath">Life Path Consultation — 60 min</option>
+                    <option value="yearly">Yearly 12-Month Forecast — 75 min</option>
+                    <option value="crossroads">Crossroads & Decision Protocol — 45 min</option>
+                    <option value="dreams">Dreams & Unconscious Archetypes — 30 min</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="consult-format" class="block text-[0.72rem] font-medium tracking-[0.16em] uppercase text-[#c5a059] mb-2">FORMAT *</label>
+                  <select id="consult-format" class="w-full bg-black/40 border border-white/10 focus:border-[#c5a059] text-white px-4 py-3 text-sm rounded-[2px] outline-none transition-colors">
+                    <option value="Video Call">Video Call (Google Meet / Zoom)</option>
+                    <option value="In-Person Studio">In-Person Studio Visit</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label for="date" class="block text-[0.72rem] font-medium tracking-[0.16em] uppercase text-[#c5a059] mb-2">PREFERRED DATE</label>
+                  <input type="date" id="date" class="w-full bg-black/40 border border-white/10 focus:border-[#c5a059] text-white px-4 py-3 text-sm rounded-[2px] outline-none transition-colors">
+                </div>
+                <div>
+                  <label for="phone" class="block text-[0.72rem] font-medium tracking-[0.16em] uppercase text-[#c5a059] mb-2">PHONE (OPTIONAL)</label>
+                  <input type="tel" id="phone" placeholder="+91 98765 43210" class="w-full bg-black/40 border border-white/10 focus:border-[#c5a059] text-white px-4 py-3 text-sm rounded-[2px] outline-none transition-colors">
+                </div>
+              </div>
+
+              <div>
+                <label for="message" class="block text-[0.72rem] font-medium tracking-[0.16em] uppercase text-[#c5a059] mb-2">QUESTION OR CONTEXT (OPTIONAL)</label>
+                <textarea id="message" rows="3" placeholder="A brief note on what feels loudest in your life right now..." class="w-full bg-black/40 border border-white/10 focus:border-[#c5a059] text-white px-4 py-3 text-sm rounded-[2px] outline-none transition-colors resize-y"></textarea>
+              </div>
+
+              <div class="flex justify-between items-center p-3.5 border border-dashed border-[#c5a059]/40 bg-[#c5a059]/5 rounded-[2px]">
+                <span class="text-sm text-[#a99fb7]">Selected Session (<span id="time-val">45 min</span>):</span>
+                <span class="font-serif text-xl text-[#e6cb87]" id="price-val">₹1,499</span>
+              </div>
+
+              <div class="flex flex-wrap gap-4 pt-2">
+                <button type="submit" class="btn-luxury-outline flex-1">
+                  SUBMIT INQUIRY
+                </button>
+                <button type="button" class="btn-luxury-dark" id="whatsapp-book-btn">
+                  ENQUIRE ON WHATSAPP
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+  <!-- ==========================================
+       FOUR-COLUMN LUXURY EDITORIAL FOOTER
+       ========================================== -->
+  <footer class="border-t border-[#c5a059]/30 bg-[#050307] pt-20 pb-8 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 mb-14">
+        <!-- Col 1: Brand & Philosophy -->
+        <div class="lg:col-span-4">
+          <a href="#home" class="flex flex-col group">
+            <span class="font-serif text-lg font-medium tracking-[0.28em] text-white">M E H E R</span>
+            <span class="text-[0.62rem] font-medium tracking-[0.32em] text-[#c5a059] uppercase mt-0.5">T A R O T</span>
+          </a>
+          <p class="text-xs text-[#a99fb7] leading-relaxed mt-4 max-w-xs">
+            A sanctuary for contemplative inquiry and archetypal tarot since 2019. Readings on love, vocation, and life crossroads — grounded, honest, and delivered with discretion.
+          </p>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="lg:col-span-2">
+          <div class="text-[0.72rem] font-medium tracking-[0.2em] text-[#c5a059] uppercase mb-5">QUICK LINKS</div>
+          <ul class="space-y-3 list-none p-0 m-0">
+            <li><a href="#home" class="text-xs text-[#a99fb7] hover:text-[#e6cb87] transition-colors">Home</a></li>
+            <li><a href="#about" class="text-xs text-[#a99fb7] hover:text-[#e6cb87] transition-colors">About Us</a></li>
+            <li><a href="#reviews" class="text-xs text-[#a99fb7] hover:text-[#e6cb87] transition-colors">Testimonials</a></li>
+            <li><a href="#contact" class="text-xs text-[#a99fb7] hover:text-[#e6cb87] transition-colors">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Spread Lines -->
+        <div class="lg:col-span-3">
+          <div class="text-[0.72rem] font-medium tracking-[0.2em] text-[#c5a059] uppercase mb-5">SPREAD LINES</div>
+          <ul class="space-y-3 list-none p-0 m-0">
+            <li><a href="#offerings" class="text-xs text-[#a99fb7] hover:text-[#e6cb87] transition-colors">Love & Relationships</a></li>
+            <li><a href="#offerings" class="text-xs text-[#a99fb7] hover:text-[#e6cb87] transition-colors">Career & Strategic Purpose</a></li>
+            <li><a href="#offerings" class="text-xs text-[#a99fb7] hover:text-[#e6cb87] transition-colors">Life Path Consultation</a></li>
+            <li><a href="#offerings" class="text-xs text-[#a99fb7] hover:text-[#e6cb87] transition-colors">Yearly 12-Month Forecast</a></li>
+            <li><a href="#oracle" class="text-xs text-[#a99fb7] hover:text-[#e6cb87] transition-colors">Online Altar Pull</a></li>
+            <li><a href="#gallery" class="text-xs text-[#a99fb7] hover:text-[#e6cb87] transition-colors">Archetypes Explorer</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: The Sanctuary -->
+        <div class="lg:col-span-3">
+          <div class="text-[0.72rem] font-medium tracking-[0.2em] text-[#c5a059] uppercase mb-5">THE SANCTUARY</div>
+          <div class="space-y-3 text-xs text-[#a99fb7] leading-relaxed">
+            <div class="text-white">
+              Private Sanctuary, C-Scheme, 5th Crossing<br>
+              Jaipur, Rajasthan — 302001, India
+            </div>
+            <div class="text-[#e6cb87] font-medium">+91 98765 43210</div>
+
+            <div class="flex items-center gap-3.5 pt-2">
+              <a href="mailto:hello@mehertarot.example" class="text-[#6f667d] hover:text-[#e6cb87] transition-colors" title="Email">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4 shrink-0"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="text-[#6f667d] hover:text-[#e6cb87] transition-colors" title="Instagram">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" class="w-4 h-4 shrink-0"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer" class="border border-[#c5a059]/40 hover:border-[#e6cb87] hover:bg-[#e6cb87] hover:text-[#050307] px-2.5 py-1 text-[0.66rem] tracking-wider uppercase text-[#e6cb87] rounded-[2px] transition-all">
+                WHATSAPP
+              </a>
+            </div>
+
+            <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-[0.7rem] font-medium tracking-wider uppercase text-[#e6cb87] hover:gap-2.5 transition-all pt-2">
+              VIEW GOOGLE BUSINESS PROFILE <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gold separator bar -->
+      <div class="w-full h-px bg-gradient-to-r from-transparent via-[#c5a059]/30 to-transparent mb-7"></div>
+
+      <!-- Bottom copyright row -->
+      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 text-[0.7rem] font-medium tracking-widest uppercase text-[#6f667d]">
+        <div>&copy; 2026 MEHER TAROT</div>
+        <div>C-SCHEME, JAIPUR &middot; EST. 2019</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================
+       FLOATING WHATSAPP ATELIER TRIGGER
+       ========================================== -->
+  <a href="https://wa.me/919876543210?text=Hello%20Meher,%20I'd%20like%20to%20inquire%20about%20a%20tarot%20reading." target="_blank" rel="noopener noreferrer" class="fixed bottom-7 right-7 z-40 w-13 h-13 rounded-full border border-[#c5a059] bg-[#08060d] text-[#e6cb87] hover:bg-[#c5a059] hover:text-[#07050a] flex items-center justify-center shadow-2xl shadow-[#c5a059]/20 hover:scale-110 transition-all" aria-label="Direct WhatsApp inquiry">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 shrink-0"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
+  </a>
+
+  <!-- ==========================================
+       MODALS
+       ========================================== -->
+  <!-- Card Detail Modal -->
+  <div class="modal-overlay" id="card-modal" role="dialog" aria-modal="true">
+    <div class="bg-[#0f0b17] border border-[#c5a059]/40 max-w-2xl w-full p-8 lg:p-10 relative shadow-2xl rounded-[2px]">
+      <button class="absolute top-5 right-5 bg-transparent border border-white/10 hover:border-[#c5a059] text-[#a99fb7] hover:text-white w-8 h-8 rounded-full cursor-pointer flex items-center justify-center text-lg transition-colors" id="modal-close-btn">&times;</button>
+      <div class="grid grid-cols-1 sm:grid-cols-12 gap-8 items-center">
+        <div class="sm:col-span-5 aspect-[2/3] max-h-72 overflow-hidden border border-[#c5a059]/30 rounded-[2px] mx-auto">
+          <img id="modal-card-img" src="" alt="Tarot Card" class="w-full h-full object-cover">
+        </div>
+        <div class="sm:col-span-7">
+          <h3 id="modal-card-title" class="font-serif text-2xl sm:text-3xl text-white mb-1"></h3>
+          <div id="modal-card-arcana" class="text-xs uppercase tracking-widest text-[#c5a059] mb-3"></div>
+          <p id="modal-card-keywords" class="italic text-sm text-[#e6cb87] mb-3"></p>
+          <p id="modal-card-desc" class="text-sm text-[#a99fb7] leading-relaxed mb-4"></p>
+          <div class="border-l-2 border-[#c5a059] pl-3 py-1">
+            <div class="text-[0.68rem] uppercase tracking-wider text-[#c5a059] mb-1 font-medium">Meher's Discernment:</div>
+            <p id="modal-card-guidance" class="font-serif italic text-white text-sm leading-relaxed"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Confirmation Modal -->
+  <div class="modal-overlay" id="confirm-modal" role="dialog" aria-modal="true">
+    <div class="bg-[#0f0b17] border border-[#c5a059]/40 max-w-lg w-full p-8 text-center rounded-[2px] shadow-2xl">
+      <button class="absolute top-5 right-5 bg-transparent border border-white/10 hover:border-[#c5a059] text-[#a99fb7] hover:text-white w-8 h-8 rounded-full cursor-pointer flex items-center justify-center text-lg transition-colors" id="confirm-close-btn">&times;</button>
+      <div class="w-14 h-14 border border-[#c5a059] flex items-center justify-center mx-auto mb-5 text-[#e6cb87] text-xl rounded-full bg-[#c5a059]/10">
+        ✦
+      </div>
+      <h3 class="font-serif text-2xl text-white mb-3">Inquiry Dispatched</h3>
+      <div id="confirm-summary" class="text-sm text-[#a99fb7] leading-relaxed mb-6"></div>
+      <button class="btn-luxury-outline w-full" onclick="document.getElementById('confirm-modal').classList.remove('active'); document.body.style.overflow='';">
+        CLOSE
+      </button>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
