@@ -4,16 +4,50 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initPreloader();
   initStardust();
   initNavigation();
   initScrollProgressAndNav();
   initScrollReveal();
   initFAQAccordion();
   initTarotDeck();
+  initInteractiveAssessment();
+  initAudioAtmosphere();
+  initFloatingQuickBar();
   initGalleryModals();
   initBookingForm();
   initCookieConsent();
 });
+
+/* ==========================================================================
+   0. INSTANT CELESTIAL LOADING ANIMATION
+   ========================================================================== */
+function initPreloader() {
+  const preloader = document.getElementById('site-preloader');
+  if (!preloader) return;
+
+  let dismissed = false;
+  function dismiss() {
+    if (dismissed) return;
+    dismissed = true;
+    preloader.classList.add('preloader-hidden');
+    setTimeout(() => {
+      if (preloader.parentNode) {
+        preloader.style.display = 'none';
+      }
+    }, 600);
+  }
+
+  // Gracefully transition after orbital animation finishes filling
+  if (document.readyState === 'complete') {
+    setTimeout(dismiss, 700);
+  } else {
+    window.addEventListener('load', () => setTimeout(dismiss, 600));
+    setTimeout(dismiss, 1200);
+  }
+
+  preloader.addEventListener('click', dismiss);
+}
 
 /* ==========================================================================
    1. STARDUST BACKGROUND CANVAS (Optimized Animation Loop)
@@ -159,29 +193,11 @@ function initScrollProgressAndNav() {
 }
 
 /* ==========================================================================
-   3. SCROLL REVEAL (IntersectionObserver)
+   3. INSTANT SCROLL VISIBILITY (Zero Lag, Zero Jitters)
    ========================================================================== */
 function initScrollReveal() {
   const revealElements = document.querySelectorAll('.reveal-on-scroll');
-  if (!('IntersectionObserver' in window)) {
-    revealElements.forEach(el => el.classList.add('is-visible'));
-    return;
-  }
-
-  const observer = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, {
-    root: null,
-    rootMargin: '0px 0px -40px 0px',
-    threshold: 0.08
-  });
-
-  revealElements.forEach(el => observer.observe(el));
+  revealElements.forEach(el => el.classList.add('is-visible'));
 }
 
 /* ==========================================================================
@@ -888,4 +904,198 @@ function initCookieConsent() {
       hideBanner();
     });
   }
+}
+
+/* ==========================================================================
+   10. INTERACTIVE LIFE SITUATION & PACKAGE RECOMMENDER
+   ========================================================================== */
+function initInteractiveAssessment() {
+  const chips = document.querySelectorAll('.assessment-chip');
+  const resultCard = document.getElementById('assessment-recommendation-card');
+  const recTitle = document.getElementById('rec-title');
+  const recDesc = document.getElementById('rec-desc');
+  const recPrice = document.getElementById('rec-price');
+  const recBtn = document.getElementById('rec-action-btn');
+  const recWaBtn = document.getElementById('rec-wa-btn');
+
+  const recommendations = {
+    'love': {
+      title: 'Two Questions Tarot Session & Love Remedies',
+      desc: 'Deep exploration of relationship dynamics, mutual energy alignment, and Occult Academy certified remedies for emotional peace.',
+      price: '₹2,100',
+      packageVal: 'two-questions',
+      focusVal: 'Relationship & Love',
+      waText: 'Hello Mukta Ji, I did the online assessment for Relationship & Love guidance. I would like to book the Two Questions Package (₹2,100).'
+    },
+    'career': {
+      title: 'Two Questions Tarot Session (Career & Financial Momentum)',
+      desc: 'Unlocking blockages in business, job transition timing, partnership decisions, and actionable prosperity remedies.',
+      price: '₹2,100',
+      packageVal: 'two-questions',
+      focusVal: 'Career Growth & Success',
+      waText: 'Hello Mukta Ji, I did the online assessment for Career & Financial guidance. I would like to book the Two Questions Package (₹2,100).'
+    },
+    'health': {
+      title: 'Cellular Health & Integrative Diet Blueprint',
+      desc: '1-on-1 personalized wellness consultation addressing gut health, energy restoration, everyday nutrition (oats, jowar, makhana), and anti-inflammatory eating.',
+      price: '₹2,100',
+      packageVal: 'health-coaching',
+      focusVal: 'Cellular Health & Nutrition',
+      waText: 'Hello Mukta Ji, I am seeking Cellular Health Coaching based on your ISMN Diploma expertise. I would like to book a consultation.'
+    },
+    'reset': {
+      title: '360° Mind-Body-Soul Full Integration Session',
+      desc: 'Complete holistic overhaul: In-depth Tarot Reading with Remedies (Mind & Soul) combined with Cellular Nutrition Blueprint (Body).',
+      price: '₹5,100',
+      packageVal: 'holistic-combo',
+      focusVal: 'Complete Mind-Body-Soul Harmony',
+      waText: 'Hello Mukta Ji, I am seeking complete Mind-Body-Soul Harmony. I would like to book the 360° Combo Session (₹5,100).'
+    },
+    'monthly': {
+      title: 'Detailed 30-Day Life Roadmap & Ongoing Guidance',
+      desc: 'Comprehensive monthly forecast across Relationships, Health, and Career with structured weekly remedy adjustments.',
+      price: '₹5,100',
+      packageVal: 'monthly-guidance',
+      focusVal: 'Monthly Life Roadmap',
+      waText: 'Hello Mukta Ji, I would like to book the Detailed 30-Day Life Roadmap Package (₹5,100).'
+    }
+  };
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+
+      const topic = chip.dataset.topic;
+      const data = recommendations[topic] || recommendations['love'];
+
+      if (recTitle) recTitle.textContent = data.title;
+      if (recDesc) recDesc.textContent = data.desc;
+      if (recPrice) recPrice.textContent = data.price;
+
+      if (recBtn) {
+        recBtn.onclick = () => {
+          const packageSelect = document.getElementById('package-type');
+          const focusSelect = document.getElementById('guidance-focus');
+          if (packageSelect) {
+            packageSelect.value = data.packageVal;
+            packageSelect.dispatchEvent(new Event('change'));
+          }
+          if (focusSelect) {
+            focusSelect.value = data.focusVal;
+          }
+          const contactSec = document.getElementById('contact');
+          if (contactSec) {
+            contactSec.scrollIntoView({ behavior: 'smooth' });
+          }
+        };
+      }
+
+      if (recWaBtn) {
+        recWaBtn.href = `https://wa.me/919711241456?text=${encodeURIComponent(data.waText)}`;
+      }
+
+      if (resultCard) {
+        resultCard.style.display = 'block';
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   11. CELESTIAL AUDIO ATMOSPHERE (528Hz Miracle Tone Synthesizer)
+   ========================================================================== */
+function initAudioAtmosphere() {
+  const toggleBtns = document.querySelectorAll('.audio-toggle-btn');
+  let audioCtx = null;
+  let osc1 = null;
+  let osc2 = null;
+  let gainNode = null;
+  let isPlaying = false;
+
+  function toggleAudio() {
+    if (!isPlaying) {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        audioCtx = new AudioContext();
+
+        // 528Hz Love/Transformation frequency + 532Hz binaural beating
+        osc1 = audioCtx.createOscillator();
+        osc2 = audioCtx.createOscillator();
+        gainNode = audioCtx.createGain();
+
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(528, audioCtx.currentTime);
+
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(532, audioCtx.currentTime);
+
+        // Soft gentle volume
+        gainNode.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.035, audioCtx.currentTime + 1.5);
+
+        osc1.connect(gainNode);
+        osc2.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        osc1.start();
+        osc2.start();
+        isPlaying = true;
+
+        toggleBtns.forEach(btn => {
+          btn.classList.add('audio-playing');
+          const label = btn.querySelector('.audio-label');
+          if (label) label.textContent = 'Zen Tone: On (528Hz)';
+        });
+      } catch (err) {
+        console.log('Audio init prevented:', err);
+      }
+    } else {
+      if (gainNode && audioCtx) {
+        gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
+        setTimeout(() => {
+          if (osc1) osc1.stop();
+          if (osc2) osc2.stop();
+          if (audioCtx) audioCtx.close();
+          isPlaying = false;
+        }, 500);
+      } else {
+        isPlaying = false;
+      }
+      toggleBtns.forEach(btn => {
+        btn.classList.remove('audio-playing');
+        const label = btn.querySelector('.audio-label');
+        if (label) label.textContent = 'Sound Atmosphere';
+      });
+    }
+  }
+
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', toggleAudio);
+  });
+}
+
+/* ==========================================================================
+   12. FLOATING QUICK ACTION BAR (Instant Customer Engagement)
+   ========================================================================== */
+function initFloatingQuickBar() {
+  const quickBar = document.getElementById('floating-quick-bar');
+  if (!quickBar) return;
+
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        if (scrollTop > 380) {
+          quickBar.classList.add('visible');
+        } else {
+          quickBar.classList.remove('visible');
+        }
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
 }

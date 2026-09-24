@@ -1,0 +1,23 @@
+{
+  "name": "htmlcode-for-a-traot-reading-website",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "echo Static site ready for Hostinger! No build step needed.",
+    "start": "npx serve .",
+    "preview": "npx serve ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThinkYuvraj/TarotHTML.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/ThinkYuvraj/TarotHTML/issues"
+  },
+  "homepage": "https://github.com/ThinkYuvraj/TarotHTML#readme"
+}
