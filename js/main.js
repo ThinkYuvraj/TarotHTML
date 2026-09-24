@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initFAQAccordion();
   initTarotDeck();
   initInteractiveAssessment();
-  initAudioAtmosphere();
   initFloatingQuickBar();
   initGalleryModals();
   initBookingForm();
@@ -1002,79 +1001,7 @@ function initInteractiveAssessment() {
   });
 }
 
-/* ==========================================================================
-   11. CELESTIAL AUDIO ATMOSPHERE (528Hz Miracle Tone Synthesizer)
-   ========================================================================== */
-function initAudioAtmosphere() {
-  const toggleBtns = document.querySelectorAll('.audio-toggle-btn');
-  let audioCtx = null;
-  let osc1 = null;
-  let osc2 = null;
-  let gainNode = null;
-  let isPlaying = false;
 
-  function toggleAudio() {
-    if (!isPlaying) {
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) return;
-        audioCtx = new AudioContext();
-
-        // 528Hz Love/Transformation frequency + 532Hz binaural beating
-        osc1 = audioCtx.createOscillator();
-        osc2 = audioCtx.createOscillator();
-        gainNode = audioCtx.createGain();
-
-        osc1.type = 'sine';
-        osc1.frequency.setValueAtTime(528, audioCtx.currentTime);
-
-        osc2.type = 'sine';
-        osc2.frequency.setValueAtTime(532, audioCtx.currentTime);
-
-        // Soft gentle volume
-        gainNode.gain.setValueAtTime(0.001, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(0.035, audioCtx.currentTime + 1.5);
-
-        osc1.connect(gainNode);
-        osc2.connect(gainNode);
-        gainNode.connect(audioCtx.destination);
-
-        osc1.start();
-        osc2.start();
-        isPlaying = true;
-
-        toggleBtns.forEach(btn => {
-          btn.classList.add('audio-playing');
-          const label = btn.querySelector('.audio-label');
-          if (label) label.textContent = 'Zen Tone: On (528Hz)';
-        });
-      } catch (err) {
-        console.log('Audio init prevented:', err);
-      }
-    } else {
-      if (gainNode && audioCtx) {
-        gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
-        setTimeout(() => {
-          if (osc1) osc1.stop();
-          if (osc2) osc2.stop();
-          if (audioCtx) audioCtx.close();
-          isPlaying = false;
-        }, 500);
-      } else {
-        isPlaying = false;
-      }
-      toggleBtns.forEach(btn => {
-        btn.classList.remove('audio-playing');
-        const label = btn.querySelector('.audio-label');
-        if (label) label.textContent = 'Sound Atmosphere';
-      });
-    }
-  }
-
-  toggleBtns.forEach(btn => {
-    btn.addEventListener('click', toggleAudio);
-  });
-}
 
 /* ==========================================================================
    12. FLOATING QUICK ACTION BAR (Instant Customer Engagement)
