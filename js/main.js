@@ -1,19 +1,22 @@
 /**
- * MEHER TAROT — SCRIPT SYSTEM
- * Interactive card spreads, audio chimes, modal inspectors, theme switcher, and booking flow
+ * MUKTA BHATNAGAR — HOLISTIC WELL-BEING PLATFORM
+ * Mind, Body & Soul Integration: Tarot Guidance & Cellular Wellness Coaching
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   initStardust();
-  initTheme();
   initNavigation();
+  initScrollProgressAndNav();
+  initScrollReveal();
+  initFAQAccordion();
   initTarotDeck();
   initGalleryModals();
   initBookingForm();
+  initCookieConsent();
 });
 
 /* ==========================================================================
-   1. STARDUST BACKGROUND CANVAS
+   1. STARDUST BACKGROUND CANVAS (Optimized Animation Loop)
    ========================================================================== */
 function initStardust() {
   const canvas = document.getElementById('stardust-canvas');
@@ -37,10 +40,13 @@ function initStardust() {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
       this.size = Math.random() * 1.8 + 0.5;
-      this.speedX = (Math.random() - 0.5) * 0.3;
-      this.speedY = (Math.random() - 0.5) * 0.3 - 0.1;
+      this.speedX = (Math.random() - 0.5) * 0.25;
+      this.speedY = (Math.random() - 0.5) * 0.25 - 0.08;
       this.alpha = Math.random() * 0.7 + 0.2;
       this.twinkleSpeed = Math.random() * 0.02 + 0.005;
+      // Stardust hues matching document palette: Gold, Warm Orange, Lotus Pink, and Maroon Velvet
+      const hues = ['230, 203, 135', '197, 160, 89', '249, 115, 22', '236, 72, 153', '159, 18, 57'];
+      this.color = hues[Math.floor(Math.random() * hues.length)];
     }
     update() {
       this.x += this.speedX;
@@ -55,7 +61,7 @@ function initStardust() {
     draw() {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(229, 193, 88, ${Math.max(0.1, Math.min(0.8, this.alpha))})`;
+      ctx.fillStyle = `rgba(${this.color}, ${Math.max(0.1, Math.min(0.85, this.alpha))})`;
       ctx.fill();
     }
   }
@@ -77,33 +83,141 @@ function initStardust() {
 }
 
 /* ==========================================================================
-   2. THEME CONTROLLER (Midnight Velvet / Parchment Gold)
+   2. SCROLL PROGRESS, ACTIVE NAV LINK & BACK-TO-TOP
    ========================================================================== */
-function initTheme() {
-  const themeToggle = document.getElementById('theme-toggle');
-  if (!themeToggle) return;
+function initScrollProgressAndNav() {
+  const progressBar = document.getElementById('scroll-progress-bar');
+  const backToTopBtn = document.getElementById('back-to-top-btn');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('header[id], section[id]');
 
-  const currentTheme = localStorage.getItem('meher_tarot_theme') || 'dark';
-  if (currentTheme === 'light') {
-    document.documentElement.setAttribute('data-theme', 'light');
-  } else {
-    document.documentElement.removeAttribute('data-theme');
+  let ticking = false;
+
+  function onScroll() {
+    const scrollTop = window.scrollY || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    
+    // 1. Scroll Progress Bar
+    if (progressBar && docHeight > 0) {
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = `${scrollPercent}%`;
+    }
+
+    // 2. Back to Top Button
+    if (backToTopBtn) {
+      if (scrollTop > 350) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+    }
+
+    // 3. Scroll Spy / Active Nav Link
+    let currentSectionId = '';
+    const scrollPos = scrollTop + 140;
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+        currentSectionId = section.getAttribute('id');
+      }
+    });
+
+    if (currentSectionId) {
+      navLinks.forEach(link => {
+        if (link.dataset.section === currentSectionId) {
+          link.classList.add('nav-active');
+        } else {
+          link.classList.remove('nav-active');
+        }
+      });
+    }
+
+    ticking = false;
   }
 
-  themeToggle.addEventListener('click', () => {
-    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-    if (isLight) {
-      document.documentElement.removeAttribute('data-theme');
-      localStorage.setItem('meher_tarot_theme', 'dark');
-    } else {
-      document.documentElement.setAttribute('data-theme', 'light');
-      localStorage.setItem('meher_tarot_theme', 'light');
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Initial trigger
+  onScroll();
+
+  // Smooth scroll back to top
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  }
+}
+
+/* ==========================================================================
+   3. SCROLL REVEAL (IntersectionObserver)
+   ========================================================================== */
+function initScrollReveal() {
+  const revealElements = document.querySelectorAll('.reveal-on-scroll');
+  if (!('IntersectionObserver' in window)) {
+    revealElements.forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: '0px 0px -40px 0px',
+    threshold: 0.08
+  });
+
+  revealElements.forEach(el => observer.observe(el));
+}
+
+/* ==========================================================================
+   4. INTERACTIVE FAQ ACCORDION
+   ========================================================================== */
+function initFAQAccordion() {
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(item => {
+    const header = item.querySelector('.faq-header');
+    if (header) {
+      header.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        // Close all other items for a clean single-accordion feel
+        faqItems.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.classList.remove('open');
+            const otherHeader = otherItem.querySelector('.faq-header');
+            if (otherHeader) otherHeader.setAttribute('aria-expanded', 'false');
+          }
+        });
+
+        if (isOpen) {
+          item.classList.remove('open');
+          header.setAttribute('aria-expanded', 'false');
+        } else {
+          item.classList.add('open');
+          header.setAttribute('aria-expanded', 'true');
+        }
+      });
     }
   });
 }
 
 /* ==========================================================================
-   3. NAVIGATION & MOBILE HAMBURGER
+   5. NAVIGATION & MOBILE MENU
    ========================================================================== */
 function initNavigation() {
   const toggleBtn = document.getElementById('nav-toggle-btn');
@@ -111,22 +225,33 @@ function initNavigation() {
 
   if (toggleBtn && navLinks) {
     toggleBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('open');
-      const expanded = navLinks.classList.contains('open');
-      toggleBtn.setAttribute('aria-expanded', expanded);
+      navLinks.classList.toggle('hidden');
+      navLinks.classList.toggle('flex');
+      navLinks.classList.toggle('flex-col');
+      navLinks.classList.toggle('absolute');
+      navLinks.classList.toggle('top-full');
+      navLinks.classList.toggle('left-0');
+      navLinks.classList.toggle('w-full');
+      navLinks.classList.toggle('bg-[#0f0721]');
+      navLinks.classList.toggle('p-6');
+      navLinks.classList.toggle('border-b');
+      navLinks.classList.toggle('border-[#c5a059]/30');
+      navLinks.classList.toggle('shadow-2xl');
     });
 
-    // Close when clicking any link
     navLinks.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        navLinks.classList.remove('open');
+        if (window.innerWidth < 768) {
+          navLinks.classList.add('hidden');
+          navLinks.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-[#0f0721]', 'p-6', 'border-b', 'border-[#c5a059]/30', 'shadow-2xl');
+        }
       });
     });
   }
 }
 
 /* ==========================================================================
-   4. WEB AUDIO SOUND EFFECTS (Synthesized Ethereal Chime)
+   3. WEB AUDIO SOUND EFFECTS
    ========================================================================== */
 let audioCtx = null;
 function playTarotChime() {
@@ -141,7 +266,7 @@ function playTarotChime() {
     }
 
     const now = audioCtx.currentTime;
-    const notes = [587.33, 739.99, 880.00, 1174.66]; // D5, F#5, A5, D6 ethereal pentatonic
+    const notes = [587.33, 739.99, 880.00, 1174.66];
     const note = notes[Math.floor(Math.random() * notes.length)];
 
     const osc = audioCtx.createOscillator();
@@ -161,12 +286,12 @@ function playTarotChime() {
     osc.start(now);
     osc.stop(now + 1.3);
   } catch (e) {
-    // Audio context may be restricted before user gesture
+    // Audio fallback
   }
 }
 
 /* ==========================================================================
-   5. TAROT DECK DATA & INTERACTIVE SPREADS
+   4. TAROT & HOLISTIC DECK DATA
    ========================================================================== */
 const TAROT_CARDS = [
   {
@@ -174,70 +299,70 @@ const TAROT_CARDS = [
     name: 'The Star',
     arcana: 'Major Arcana XVII',
     image: 'assets/images/card-the-star.jpg',
-    keywords: 'Hope, Renewal, Serenity, Inspiration, Faith',
-    summary: 'A luminous blessing after the storm. You are being invited to breathe, trust your quiet vision, and release lingering doubt.',
-    guidance: 'Whatever felt exhausted is gently replenishing. Pour your energy into what sustains your spirit, not what demands performance.',
-    fullMeaning: 'The Star shines with calm, crystalline reassurance. When this card appears, it signifies peace following period of testing. It urges you to reconnect with your authentic purpose and open your heart to quiet blessings.'
+    keywords: 'Hope, Cellular Healing, Renewal, Clarity, Serenity',
+    summary: 'A divine blessing of peace and restoration. You are releasing fear, and a clear stream of hope is revitalizing your mind, body, and spirit.',
+    guidance: 'Mukta’s Mind-Body-Soul Remedy: Cellular healing begins with peace of mind. Practice conscious breathing, nourish your gut with clean wholesome food, and trust your recovery journey.',
+    fullMeaning: 'The Star represents profound renewal and holistic alignment. In Mukta’s holistic readings, this card confirms that physical vitality and spiritual faith are coming into beautiful balance.'
   },
   {
     id: 'the-moon',
     name: 'The Moon',
     arcana: 'Major Arcana XVIII',
     image: 'assets/images/card-the-moon.jpg',
-    keywords: 'Intuition, Dreams, Illusions, Unconscious Truths',
-    summary: 'Not everything is visible under direct sunlight. Subtle signs and gut feelings carry more truth right now than surface facts.',
-    guidance: 'Do not rush to force decisions while the fog lingers. Walk gently, listen to your dreams, and allow hidden dynamics to show themselves.',
-    fullMeaning: 'The Moon presides over the twilight world of instincts, dreams, and unconscious impulses. It advises patience: allow illusions to dissolve naturally rather than jumping to fear-driven conclusions.'
+    keywords: 'Intuition, Subconscious Truths, Illusions, Emotional Clarity',
+    summary: 'Not everything is visible right away. What is hidden under the surface is gently revealing itself to help you remove doubts and illusions.',
+    guidance: 'Mukta’s Mind-Body-Soul Remedy: Do not rush into conclusions when thoughts feel foggy. Ground yourself in daily wellness, prioritize restful sleep, and seek clarity before major commitments.',
+    fullMeaning: 'The Moon governs the subconscious and emotional depth. Mukta helps you decode hidden dynamics and eliminate mental confusion so you can walk forward with clear confidence.'
   },
   {
     id: 'the-sun',
     name: 'The Sun',
     arcana: 'Major Arcana XIX',
     image: 'assets/images/card-the-sun.jpg',
-    keywords: 'Clarity, Joy, Vitality, Success, Confidence',
-    summary: 'Pure radiance and unmistakable breakthrough. Shadows recede as your true direction becomes unmistakable.',
-    guidance: 'Step into the light without apologising for your warmth. Success is not an accident—it is the natural result of your alignment.',
-    fullMeaning: 'The Sun represents supreme optimism, warmth, and vitality. It promises clarity where there was confusion and celebrations where there was once solitary toil.'
+    keywords: 'Vitality, Joy, Success, Cellular Energy, Radiance',
+    summary: 'Pure radiance, high vitality, and unmistakable success. Long-standing blocks and fatigue dissolve as warm positivity enters your life.',
+    guidance: 'Mukta’s Mind-Body-Soul Remedy: Celebrate your accomplishments. Nourish your vitality with wholesome plant proteins and omega-3s, express gratitude, and share your warmth with family.',
+    fullMeaning: 'The Sun represents supreme vitality, physical health, and triumph. It brings joyful outcomes to questions about family, career growth, and holistic well-being.'
   },
   {
     id: 'the-high-priestess',
     name: 'The High Priestess',
     arcana: 'Major Arcana II',
     image: 'assets/images/card-high-priestess.jpg',
-    keywords: 'Inner Wisdom, Stillness, Intuition, Mystery',
-    summary: 'The answer already sits inside you. You do not need outside validation for what your soul already knows.',
-    guidance: 'Withdraw slightly from the noise of others\' opinions. Silence is where your sharpest discernment speaks.',
-    fullMeaning: 'Seated between the twin pillars of dark and light, The High Priestess is the keeper of inner wisdom and ancient mysteries. She reminds you that intuition is faster than rational calculation.'
+    keywords: 'Inner Wisdom, Spiritual Connection, Calm, Intuition',
+    summary: 'Your inner wisdom holds the exact remedy you need. A quiet moment of introspection will reveal the answers you seek.',
+    guidance: 'Mukta’s Mind-Body-Soul Remedy: Step back from chaotic noise. When you cultivate a quiet mind and calm nervous system, your intuitive guidance speaks clearly and effortlessly.',
+    fullMeaning: 'The High Priestess represents sacred knowledge and stillness. Mukta uses this archetype to teach seekers how to balance spiritual awareness with practical daily life.'
   },
   {
     id: 'wheel-of-fortune',
     name: 'Wheel of Fortune',
     arcana: 'Major Arcana X',
     image: 'assets/images/card-wheel-of-fortune.jpg',
-    keywords: 'Cycles, Destiny, Turning Points, Alignment',
-    summary: 'A cyclical shift is underway. Circumstances that felt stagnant are beginning to rotate in unexpected, supportive ways.',
-    guidance: 'Do not grip tightly onto outdated phases. Stay centered at the wheel\'s hub while the outer edges spin.',
-    fullMeaning: 'The Wheel of Fortune symbolizes life\'s inevitable cycles, karma, and sudden strokes of synchronicity. When the wheel turns, resistance only exhausts you—adaptability leads to expansion.'
+    keywords: 'Positive Cycles, Turning Points, Karmic Alignment',
+    summary: 'A positive turning point is here. Situations that felt delayed or stuck are beginning to shift in your favor.',
+    guidance: 'Mukta’s Mind-Body-Soul Remedy: A long-pending task or goal is gaining momentum. Embrace positive change, stay grounded in discipline, and trust the divine timing of your life.',
+    fullMeaning: 'The Wheel of Fortune signals the arrival of supportive new cycles, opportunities, and karmic resolutions.'
   },
   {
     id: 'the-lovers',
     name: 'The Lovers',
     arcana: 'Major Arcana VI',
     image: 'assets/images/card-the-lovers.jpg',
-    keywords: 'Sacred Union, Harmony, Choice, Deep Connection',
-    summary: 'A profound choice rooted in personal truth. Alignment of head and heart brings clarity to relationships and core values.',
-    guidance: 'Choose what reflects who you are becoming, not who you were taught to be to please others.',
-    fullMeaning: 'Far beyond conventional romantic romance, The Lovers calls you to honor mutual respect, moral integrity, and authentic vulnerability in partnerships and personal commitments.'
+    keywords: 'Harmonious Relationships, Honest Choices, Mutual Respect',
+    summary: 'Harmony, mutual understanding, and heart-centered alignment. A time of meaningful connection and clear decision-making.',
+    guidance: 'Mukta’s Mind-Body-Soul Remedy: Speak with compassion, listen with patience, and nurture emotional balance in your relationships. Mutual respect brings lifelong peace.',
+    fullMeaning: 'The Lovers signifies profound emotional harmony, whether between partners, family members, or aligning personal values with life decisions.'
   },
   {
     id: 'the-empress',
     name: 'The Empress',
     arcana: 'Major Arcana III',
     image: 'assets/images/card-the-empress.jpg',
-    keywords: 'Abundance, Sensuality, Creative Fertility, Nurturing',
-    summary: 'A lush period of creative birth and gentle nourishment. What you tend with care is ready to flourish.',
-    guidance: 'Treat yourself with generous grace. Creative breakthroughs require warmth, patience, and grounded sensory joy.',
-    fullMeaning: 'The Empress embodies nature\'s boundless fertile creativity. She encourages sensory grounding, honoring your body, and allowing projects and relationships to blossom organically.'
+    keywords: 'Abundance, Cellular Health, Nurturing, Prosperity',
+    summary: 'A flourishing phase of prosperity, health, and holistic abundance. What you nourish with love and proper care is ready to thrive.',
+    guidance: 'Mukta’s Mind-Body-Soul Remedy: Honor your body as a sacred temple. Wholesome nutrition (oats, jowar, makhana), positive thoughts, and gentle self-care are the foundations of true abundance.',
+    fullMeaning: 'The Empress represents maternal warmth, creative fertility, and holistic wellness—a signature archetype reflecting Mukta’s Mind, Body & Soul philosophy.'
   }
 ];
 
@@ -250,20 +375,22 @@ function initTarotDeck() {
 
   if (!container) return;
 
-  let currentMode = 'single'; // 'single' | 'three'
+  let currentMode = 'single';
   let drawnCards = [];
 
   function setupSpread() {
     container.innerHTML = '';
-    resultBox.classList.remove('show');
-    resultBox.innerHTML = '';
+    if (resultBox) {
+      resultBox.classList.remove('show');
+      resultBox.style.display = 'none';
+      resultBox.innerHTML = '';
+    }
 
     const count = currentMode === 'single' ? 1 : 3;
     const labels = currentMode === 'single'
-      ? ['Card of the Day']
-      : ['1. Past Influences', '2. Present Reality', '3. Guiding Horizon'];
+      ? ['Daily Intuitive & Vitality Card']
+      : ['1. Mind & Past Influences', '2. Body & Present Reality', '3. Soul & Guiding Horizon'];
 
-    // Randomly pick unique cards
     const shuffled = [...TAROT_CARDS].sort(() => 0.5 - Math.random());
     drawnCards = shuffled.slice(0, count);
 
@@ -324,42 +451,51 @@ function initTarotDeck() {
   }
 
   function showReadingInterpretation() {
+    if (!resultBox) return;
     let html = '';
     if (currentMode === 'single') {
       const c = drawnCards[0];
       html = `
-        <h3>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          ${c.name} — ${c.keywords}
-        </h3>
-        <p>${c.summary}</p>
-        <p class="reading-guidance"><strong>Meher's Guidance:</strong> ${c.guidance}</p>
+        <div class="flex items-center gap-3 mb-4 text-[#e6cb87]">
+          <span class="text-2xl">✦</span>
+          <h3 class="font-serif text-2xl text-white">${c.name} — <span class="text-[#e6cb87] font-normal">${c.keywords}</span></h3>
+        </div>
+        <p class="text-[#c4b5d4] text-base leading-relaxed mb-4">${c.summary}</p>
+        <div class="border-l-4 border-[#c5a059] bg-[#1a0c36] p-4 rounded-r-[6px]">
+          <div class="text-xs uppercase tracking-wider text-[#e6cb87] font-bold mb-1">Mukta's Mind-Body-Soul Guidance & Remedy:</div>
+          <p class="font-serif italic text-white text-sm leading-relaxed">${c.guidance}</p>
+        </div>
       `;
     } else {
-      const positions = ['Past Influences', 'Present Reality', 'Guiding Horizon'];
+      const positions = ['Mind (Past Roots)', 'Body (Present Energy)', 'Soul (Guiding Horizon)'];
       html = `
-        <h3>
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          Three-Card Story Spread
-        </h3>
+        <div class="flex items-center gap-3 mb-4 text-[#e6cb87]">
+          <span class="text-2xl">✦</span>
+          <h3 class="font-serif text-2xl text-white">Three-Pillar Mind-Body-Soul Spread</h3>
+        </div>
       `;
       drawnCards.forEach((c, idx) => {
         html += `
-          <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border);">
-            <strong style="color:var(--gold-bright);">${positions[idx]}: ${c.name}</strong> (${c.keywords})
-            <p style="margin-top:4px;">${c.summary}</p>
+          <div class="mt-4 pt-4 border-t border-white/10">
+            <div class="text-[#e6cb87] font-semibold text-base mb-1 font-serif">
+              ${positions[idx]}: <span class="text-white">${c.name}</span> <span class="text-xs text-[#8b79a5] font-sans font-normal">(${c.keywords})</span>
+            </div>
+            <p class="text-[#c4b5d4] text-sm leading-relaxed mb-2">${c.summary}</p>
           </div>
         `;
       });
       html += `
-        <p class="reading-guidance" style="margin-top:16px;">
-          <strong>Synthesized Insight:</strong> The arc from ${drawnCards[0].name} to ${drawnCards[2].name} shows that what you learned previously now opens the gateway to your next expansion. Honor your pace.
-        </p>
+        <div class="mt-5 p-4 bg-[#1a0c36] border-l-4 border-[#c5a059] rounded-r-[6px]">
+          <div class="text-xs uppercase tracking-wider text-[#e6cb87] font-bold mb-1">Synthesized Holistic Insight:</div>
+          <p class="font-serif italic text-white text-sm leading-relaxed">
+            The transition from ${drawnCards[0].name} into ${drawnCards[2].name} shows that addressing emotional tension while nourishing your cellular health will remove roadblocks and create an empowered, balanced life.
+          </p>
+        </div>
       `;
     }
 
     resultBox.innerHTML = html;
-    resultBox.classList.add('show');
+    resultBox.style.display = 'block';
     resultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
@@ -367,8 +503,10 @@ function initTarotDeck() {
     singleTab.addEventListener('click', () => {
       if (currentMode !== 'single') {
         currentMode = 'single';
-        singleTab.classList.add('active');
-        threeTab.classList.remove('active');
+        singleTab.classList.add('bg-[#c5a059]/30', 'text-white', 'border-[#c5a059]');
+        singleTab.classList.remove('text-[#a99fb7]', 'border-transparent');
+        threeTab.classList.remove('bg-[#c5a059]/30', 'text-white', 'border-[#c5a059]');
+        threeTab.classList.add('text-[#a99fb7]');
         setupSpread();
       }
     });
@@ -376,8 +514,10 @@ function initTarotDeck() {
     threeTab.addEventListener('click', () => {
       if (currentMode !== 'three') {
         currentMode = 'three';
-        threeTab.classList.add('active');
-        singleTab.classList.remove('active');
+        threeTab.classList.add('bg-[#c5a059]/30', 'text-white', 'border-[#c5a059]');
+        threeTab.classList.remove('text-[#a99fb7]');
+        singleTab.classList.remove('bg-[#c5a059]/30', 'text-white', 'border-[#c5a059]');
+        singleTab.classList.add('text-[#a99fb7]');
         setupSpread();
       }
     });
@@ -395,7 +535,7 @@ function initTarotDeck() {
 }
 
 /* ==========================================================================
-   6. GALLERY CARD INSPECTOR MODAL
+   5. GALLERY CARD INSPECTOR MODAL
    ========================================================================== */
 function initGalleryModals() {
   const modalOverlay = document.getElementById('card-modal');
@@ -449,45 +589,75 @@ function initGalleryModals() {
 }
 
 /* ==========================================================================
-   7. BOOKING SYSTEM & PRICING SYNC
+   6. UNIFIED BOOKING ENGINE (Tarot & Cellular Wellness)
    ========================================================================== */
 function initBookingForm() {
   const form = document.getElementById('booking-form');
-  const selectReading = document.getElementById('reading-type');
+  const selectPackage = document.getElementById('package-type');
+  const selectFocus = document.getElementById('guidance-focus');
   const priceDisplay = document.getElementById('price-val');
-  const timeDisplay = document.getElementById('time-val');
+  const includesDisplay = document.getElementById('includes-val');
   const whatsappBtn = document.getElementById('whatsapp-book-btn');
   const confirmModal = document.getElementById('confirm-modal');
   const confirmClose = document.getElementById('confirm-close-btn');
 
-  const PRICING_MAP = {
-    'love': { name: 'Love & Relationships', time: '30 min', price: '₹999' },
-    'career': { name: 'Career & Purpose', time: '45 min', price: '₹1,499' },
-    'lifepath': { name: 'Life Path Consultation', time: '60 min', price: '₹1,999' },
-    'yearly': { name: 'Yearly 12-Month Forecast', time: '75 min', price: '₹2,999' },
-    'crossroads': { name: 'Crossroads & Decision Protocol', time: '45 min', price: '₹1,499' },
-    'dreams': { name: 'Dreams & Unconscious Archetypes', time: '30 min', price: '₹999' }
+  const consentCheckbox = document.getElementById('data-consent');
+  const submitBtn = document.getElementById('submit-booking-btn');
+  const consentHint = document.getElementById('consent-hint');
+
+  // Unified Comprehensive Packages across Tarot & Health Coaching
+  const PACKAGES_MAP = {
+    'one-question': {
+      name: 'Tarot Guidance: One Question with Remedy',
+      price: '₹1,100',
+      description: 'Tarot reading for 1 specific question, actionable spiritual guidance, and customized remedy.'
+    },
+    'two-questions': {
+      name: 'Tarot Guidance: Two Questions with Remedy',
+      price: '₹2,100',
+      description: 'In-depth tarot reading for 2 questions, clarity on key dynamics, and targeted remedies.'
+    },
+    'monthly-guidance': {
+      name: 'Tarot Guidance: Detailed Month Roadmap with Remedy',
+      price: '₹5,100',
+      description: 'Comprehensive 30-day forecast across relationships, career, health & life with remedies.'
+    },
+    'health-coaching': {
+      name: 'Cellular Health Coaching & Diet Blueprint',
+      price: 'Personal Consultation',
+      description: 'ISMN holistic nutrition plan, gut health, everyday protein recipes & cellular energy blueprint.'
+    },
+    'holistic-combo': {
+      name: '360° Mind-Body-Soul Holistic Combo Session',
+      price: 'Special Combo',
+      description: 'Complete integrated consultation: In-depth Tarot Reading + Personalized Cellular Wellness Plan.'
+    },
+    'wellness-workshop': {
+      name: 'Wellness & Nutrition Workshop / Seminar',
+      price: 'Group / Community',
+      description: 'Interactive nutrition seminar covering oats, jowar, makhana, omega-3s, and gut health.'
+    }
   };
 
   function updatePricing() {
-    if (!selectReading) return;
-    const val = selectReading.value;
-    const item = PRICING_MAP[val] || PRICING_MAP['love'];
+    if (!selectPackage) return;
+    const val = selectPackage.value;
+    const item = PACKAGES_MAP[val] || PACKAGES_MAP['one-question'];
     if (priceDisplay) priceDisplay.textContent = item.price;
-    if (timeDisplay) timeDisplay.textContent = item.time;
+    if (includesDisplay) includesDisplay.textContent = item.description;
   }
 
-  if (selectReading) {
-    selectReading.addEventListener('change', updatePricing);
+  if (selectPackage) {
+    selectPackage.addEventListener('change', updatePricing);
     updatePricing();
   }
 
-  // Pre-fill from Services buttons
-  document.querySelectorAll('.btn-select-service').forEach(btn => {
+  // Pre-fill from package buttons across both Tarot and Wellness cards
+  document.querySelectorAll('.btn-select-package').forEach(btn => {
     btn.addEventListener('click', (e) => {
-      const serviceKey = btn.dataset.service;
-      if (selectReading && PRICING_MAP[serviceKey]) {
-        selectReading.value = serviceKey;
+      const packageKey = btn.dataset.package;
+      if (selectPackage && PACKAGES_MAP[packageKey]) {
+        selectPackage.value = packageKey;
         updatePricing();
         const contactSection = document.getElementById('contact');
         if (contactSection) {
@@ -497,28 +667,68 @@ function initBookingForm() {
     });
   });
 
-  // Direct WhatsApp instant booking
+  // Handle Consent Checkbox Change to Enable/Disable Submit Button
+  if (consentCheckbox && submitBtn) {
+    function handleConsentToggle() {
+      if (consentCheckbox.checked) {
+        submitBtn.disabled = false;
+        submitBtn.removeAttribute('disabled');
+        if (consentHint) {
+          consentHint.textContent = '✓ Consent provided. You can now submit your booking inquiry.';
+          consentHint.classList.remove('text-[#8b79a5]');
+          consentHint.classList.add('text-emerald-400');
+        }
+      } else {
+        submitBtn.disabled = true;
+        submitBtn.setAttribute('disabled', 'true');
+        if (consentHint) {
+          consentHint.textContent = 'Please check the box above to enable submission.';
+          consentHint.classList.add('text-[#8b79a5]');
+          consentHint.classList.remove('text-emerald-400');
+        }
+      }
+    }
+
+    consentCheckbox.addEventListener('change', handleConsentToggle);
+    handleConsentToggle();
+  }
+
+  // Direct WhatsApp booking with full holistic parameters
   if (whatsappBtn) {
     whatsappBtn.addEventListener('click', (e) => {
       e.preventDefault();
-      const name = document.getElementById('name')?.value || 'Guest';
-      const serviceKey = selectReading?.value || 'love';
-      const service = PRICING_MAP[serviceKey]?.name || 'Tarot Reading';
-      const date = document.getElementById('date')?.value || 'Flexible';
-      const mode = document.getElementById('consult-format')?.value || 'Video Call';
+      
+      if (consentCheckbox && !consentCheckbox.checked) {
+        consentCheckbox.focus();
+        if (consentHint) {
+          consentHint.textContent = '⚠ Please check the consent box to proceed with WhatsApp inquiry.';
+          consentHint.classList.add('text-amber-400');
+        }
+        return;
+      }
+
+      const name = document.getElementById('name')?.value || 'Seeker';
+      const packageKey = selectPackage?.value || 'one-question';
+      const packageInfo = PACKAGES_MAP[packageKey] || PACKAGES_MAP['one-question'];
+      const focus = selectFocus?.value || 'Holistic Mind, Body & Soul Balance';
+      const mode = document.getElementById('consult-format')?.value || 'Online (Phone / WhatsApp Call)';
+      const preferredTiming = document.getElementById('preferred-timing')?.value || 'Flexible Window';
+      const date = document.getElementById('date')?.value || 'Earliest Available';
       const msg = document.getElementById('message')?.value || '';
 
       const text = encodeURIComponent(
-        `Hello Meher! I'd like to book a tarot reading session:\n` +
+        `Hello Mukta Ji! I would like to book a session on your Holistic Well-Being Platform:\n\n` +
         `• Name: ${name}\n` +
-        `• Reading: ${service}\n` +
-        `• Format: ${mode}\n` +
+        `• Service / Package: ${packageInfo.name} (${packageInfo.price})\n` +
+        `• Holistic Focus Area: ${focus}\n` +
+        `• Consultation Format: ${mode}\n` +
+        `• Preferred Timing: ${preferredTiming}\n` +
         `• Preferred Date: ${date}\n` +
-        (msg ? `• Question: ${msg}\n` : '') +
-        `Please let me know your available slots.`
+        (msg ? `• Query / Details: ${msg}\n` : '') +
+        `\nI have consented to share my details for this consultation. Please let me know your available slots and payment details. Thank you!`
       );
 
-      window.open(`https://wa.me/919876543210?text=${text}`, '_blank');
+      window.open(`https://wa.me/919711241456?text=${text}`, '_blank');
     });
   }
 
@@ -526,17 +736,25 @@ function initBookingForm() {
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
+      
+      if (consentCheckbox && !consentCheckbox.checked) {
+        alert('Please provide your consent to share your contact details for scheduling.');
+        return;
+      }
+
       const name = document.getElementById('name')?.value || '';
       const email = document.getElementById('email')?.value || '';
-      const serviceKey = selectReading?.value || 'love';
-      const serviceInfo = PRICING_MAP[serviceKey] || PRICING_MAP['love'];
+      const packageKey = selectPackage?.value || 'one-question';
+      const packageInfo = PACKAGES_MAP[packageKey] || PACKAGES_MAP['one-question'];
 
-      // Populate confirmation modal
       const confirmSummary = document.getElementById('confirm-summary');
       if (confirmSummary) {
         confirmSummary.innerHTML = `
-          <p>Thank you, <strong>${name}</strong>! Your inquiry for <strong>${serviceInfo.name} (${serviceInfo.price})</strong> has been received.</p>
-          <p style="margin-top:10px; color:var(--text-muted);">A confirmation and time selection invite will be dispatched to <strong>${email}</strong> within 24 hours.</p>
+          <p class="text-white">Thank you, <strong>${name}</strong>! Your inquiry for <strong>${packageInfo.name} (${packageInfo.price})</strong> has been received.</p>
+          <p style="margin-top:12px; color:#c4b5d4;">Mukta Bhatnagar will review your requirements and coordinate your slot via WhatsApp / Email (<strong>${email}</strong>) shortly.</p>
+          <div class="mt-4 p-3 bg-[#1e0e3d] rounded-[4px] text-xs text-[#e6cb87]">
+            Platform Timings: Health Coaching (11:30 AM – 5:30 PM) | Tarot Sessions (8:30 PM – 10:30 PM)
+          </div>
         `;
       }
 
@@ -547,6 +765,14 @@ function initBookingForm() {
 
       form.reset();
       updatePricing();
+      if (consentCheckbox && submitBtn) {
+        submitBtn.disabled = true;
+        if (consentHint) {
+          consentHint.textContent = 'Please check the box above to enable submission.';
+          consentHint.classList.add('text-[#8b79a5]');
+          consentHint.classList.remove('text-emerald-400');
+        }
+      }
     });
   }
 
@@ -560,6 +786,106 @@ function initBookingForm() {
         confirmModal.classList.remove('active');
         document.body.style.overflow = '';
       }
+    });
+  }
+}
+
+/* ==========================================================================
+   7. COOKIE CONSENT BANNER & PREFERENCES
+   ========================================================================== */
+function initCookieConsent() {
+  const banner = document.getElementById('cookie-consent-banner');
+  const acceptAllBtn = document.getElementById('cookie-accept-all');
+  const essentialBtn = document.getElementById('cookie-essential-only');
+  const openSettingsBtn = document.getElementById('cookie-settings-btn');
+  const reopenTrigger = document.getElementById('reopen-cookie-settings');
+  const cookieModal = document.getElementById('cookie-modal');
+  const cookieModalClose = document.getElementById('cookie-modal-close');
+  const savePreferencesBtn = document.getElementById('cookie-save-preferences');
+
+  const STORAGE_KEY = 'mukta_cookie_consent_choice';
+
+  function showBanner() {
+    if (banner) banner.classList.add('show');
+  }
+
+  function hideBanner() {
+    if (banner) banner.classList.remove('show');
+  }
+
+  const savedConsent = localStorage.getItem(STORAGE_KEY);
+  if (!savedConsent) {
+    setTimeout(showBanner, 900);
+  }
+
+  if (acceptAllBtn) {
+    acceptAllBtn.addEventListener('click', () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        essential: true,
+        analytics: true,
+        marketing: true,
+        timestamp: new Date().toISOString()
+      }));
+      hideBanner();
+    });
+  }
+
+  if (essentialBtn) {
+    essentialBtn.addEventListener('click', () => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        essential: true,
+        analytics: false,
+        marketing: false,
+        timestamp: new Date().toISOString()
+      }));
+      hideBanner();
+    });
+  }
+
+  function openCookieModal() {
+    if (cookieModal) {
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        const analyticsBox = document.getElementById('cookie-analytics-toggle');
+        const marketingBox = document.getElementById('cookie-marketing-toggle');
+        if (analyticsBox) analyticsBox.checked = saved.analytics !== false;
+        if (marketingBox) marketingBox.checked = saved.marketing !== false;
+      } catch (e) {}
+
+      cookieModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeCookieModal() {
+    if (cookieModal) {
+      cookieModal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (openSettingsBtn) openSettingsBtn.addEventListener('click', openCookieModal);
+  if (reopenTrigger) reopenTrigger.addEventListener('click', (e) => { e.preventDefault(); openCookieModal(); });
+  if (cookieModalClose) cookieModalClose.addEventListener('click', closeCookieModal);
+
+  if (cookieModal) {
+    cookieModal.addEventListener('click', (e) => {
+      if (e.target === cookieModal) closeCookieModal();
+    });
+  }
+
+  if (savePreferencesBtn) {
+    savePreferencesBtn.addEventListener('click', () => {
+      const analytics = document.getElementById('cookie-analytics-toggle')?.checked ?? false;
+      const marketing = document.getElementById('cookie-marketing-toggle')?.checked ?? false;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        essential: true,
+        analytics: analytics,
+        marketing: marketing,
+        timestamp: new Date().toISOString()
+      }));
+      closeCookieModal();
+      hideBanner();
     });
   }
 }

@@ -1,49 +1,120 @@
 /* ==========================================================================
-   MEHER TAROT — TAILWIND CSS v4 ATELIER EXTENSIONS & 3D RIGGING
+   MUKTA BHATNAGAR — HOLISTIC WELL-BEING PLATFORM
+   (Tarot Guidance & Cellular Health Coaching for Mind, Body & Soul)
+   Aesthetic Design System: Deep Obsidian Purple, Celestial Gold, Warm Orange & Lotus Rose
    ========================================================================== */
 
 @theme {
-  --color-obsidian: #07050a;
-  --color-obsidian-elevated: #0c0813;
-  --color-surface: #0f0b17;
-  --color-surface-card: #120d1c;
-  --color-surface-translucent: rgba(14, 10, 22, 0.85);
-
+  --color-obsidian: #080312;
+  --color-obsidian-elevated: #0f0721;
+  --color-purple-deep: #160a2e;
+  --color-purple-velvet: #240c42;
+  --color-purple-surface: #1e0e3d;
+  --color-purple-card: #25124b;
+  --color-purple-border: rgba(197, 160, 89, 0.25);
+  
+  /* Specified in document: Deep Purple & Gold */
   --color-gold: #c5a059;
   --color-gold-light: #e6cb87;
   --color-gold-dark: #8c6e32;
-  --color-gold-border: rgba(197, 160, 89, 0.28);
-  --color-gold-border-subtle: rgba(197, 160, 89, 0.14);
-  --color-gold-glow: rgba(197, 160, 89, 0.2);
+  --color-gold-border: rgba(197, 160, 89, 0.32);
+  --color-gold-glow: rgba(230, 203, 135, 0.25);
 
-  --color-text-primary: #f5f0e6;
-  --color-text-secondary: #a99fb7;
-  --color-text-muted: #6f667d;
+  /* Specified in document: Supporting Warm Orange, Pink & Maroon */
+  --color-warm-orange: #f97316;
+  --color-warm-orange-light: #fb923c;
+  --color-warm-orange-dark: #c2410c;
+  
+  --color-lotus-pink: #ec4899;
+  --color-lotus-pink-light: #f472b6;
+  --color-lotus-pink-dark: #be185d;
+
+  --color-maroon: #881337;
+  --color-maroon-light: #9f1239;
+  --color-maroon-dark: #4c0519;
+
+  --color-emerald-glow: rgba(52, 211, 153, 0.2);
+
+  --color-text-primary: #fdfbf7;
+  --color-text-secondary: #c4b5d4;
+  --color-text-muted: #8b79a5;
 
   --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
   --font-sans: 'Jost', system-ui, -apple-system, sans-serif;
 }
 
-/* Base Guardrails to prevent any icon blowout */
+/* Base Guardrails */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 85px;
-  background-color: #07050a;
+  scroll-padding-top: 90px;
+  background-color: #080312;
+  width: 100%;
 }
 
 body {
-  background-color: #07050a;
-  color: #f5f0e6;
+  background-color: #080312;
+  color: #fdfbf7;
   font-family: 'Jost', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   position: relative;
+  line-height: 1.6;
+  width: 100%;
+  min-height: 100vh;
 }
 
-/* Crucial global rule to prevent SVG blowout */
+/* Widescreen Fluid Responsive Container - Stretches dynamically to fit displays */
+.site-container {
+  width: 100%;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .site-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .site-container {
+    max-width: 1640px;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .site-container {
+    max-width: 1840px;
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .site-container {
+    max-width: 2100px;
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+/* SVG and Image safe guards */
 svg {
   display: inline-block;
   vertical-align: middle;
@@ -66,7 +137,7 @@ img {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.45;
+  opacity: 0.55;
 }
 
 /* Typography Helpers */
@@ -84,33 +155,45 @@ img {
   color: #e6cb87;
 }
 
-/* Buttons */
+/* Buttons with Proportions & Generous Padding */
 .btn-luxury-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 28px;
+  padding: 13px 26px;
   font-family: 'Jost', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.82rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   cursor: pointer;
-  border-radius: 2px;
-  border: 1px solid rgba(197, 160, 89, 0.4);
+  border-radius: 4px;
+  border: 1px solid rgba(197, 160, 89, 0.45);
   color: #e6cb87;
-  background: rgba(197, 160, 89, 0.04);
-  transition: all 0.3s ease;
+  background: rgba(197, 160, 89, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
 }
 
-.btn-luxury-outline:hover {
+.btn-luxury-outline:hover:not(:disabled) {
   border-color: #e6cb87;
-  color: #07050a;
-  background: #e6cb87;
-  box-shadow: 0 0 24px rgba(197, 160, 89, 0.25);
-  transform: translateY(-1px);
+  color: #080312;
+  background: linear-gradient(135deg, #e6cb87 0%, #c5a059 100%);
+  box-shadow: 0 0 24px rgba(197, 160, 89, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-luxury-outline:disabled,
+.btn-luxury-outline[disabled] {
+  opacity: 0.45;
+  cursor: not-allowed;
+  pointer-events: none;
+  border-color: rgba(197, 160, 89, 0.2);
+  background: rgba(255, 255, 255, 0.02);
+  color: #8b79a5;
+  box-shadow: none;
+  transform: none;
 }
 
 .btn-luxury-dark {
@@ -118,26 +201,192 @@ img {
   align-items: center;
   justify-content: center;
   gap: 10px;
-  padding: 14px 28px;
+  padding: 13px 26px;
   font-family: 'Jost', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 500;
+  font-size: 0.82rem;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   cursor: pointer;
-  border-radius: 2px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f5f0e6;
-  background: rgba(255, 255, 255, 0.02);
-  transition: all 0.3s ease;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #fdfbf7;
+  background: rgba(255, 255, 255, 0.04);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   white-space: nowrap;
 }
 
 .btn-luxury-dark:hover {
   border-color: #c5a059;
   color: #e6cb87;
-  background: rgba(197, 160, 89, 0.08);
-  transform: translateY(-1px);
+  background: rgba(197, 160, 89, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Document Colors: Warm Orange & Pink Energy Button */
+.btn-warm-energy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 26px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid rgba(249, 115, 22, 0.5);
+  color: #fff;
+  background: linear-gradient(135deg, #f97316 0%, #ec4899 100%);
+  box-shadow: 0 4px 20px rgba(249, 115, 22, 0.35);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.btn-warm-energy:hover {
+  box-shadow: 0 8px 28px rgba(236, 72, 153, 0.55);
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+/* Document Colors: Maroon Velvet Outline Button */
+.btn-maroon-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px 26px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid rgba(159, 18, 57, 0.6);
+  color: #fca5a5;
+  background: rgba(136, 19, 55, 0.18);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap;
+}
+
+.btn-maroon-outline:hover {
+  border-color: #f43f5e;
+  color: #ffffff;
+  background: rgba(159, 18, 57, 0.45);
+  box-shadow: 0 0 24px rgba(159, 18, 57, 0.5);
+  transform: translateY(-2px);
+}
+
+.btn-whatsapp-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.btn-whatsapp-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
+  color: #ffffff;
+}
+
+/* Custom Interactive Checkbox */
+.custom-checkbox-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.custom-checkbox-container input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid rgba(197, 160, 89, 0.5);
+  border-radius: 4px;
+  background-color: rgba(8, 3, 18, 0.85);
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+  margin-top: 1px;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+.custom-checkbox-container input[type="checkbox"]:checked {
+  background-color: #c5a059;
+  border-color: #e6cb87;
+  box-shadow: 0 0 12px rgba(230, 203, 135, 0.5);
+}
+
+.custom-checkbox-container input[type="checkbox"]:checked::before {
+  content: "✓";
+  font-size: 14px;
+  font-weight: 700;
+  color: #080312;
+}
+
+.custom-checkbox-container:hover input[type="checkbox"] {
+  border-color: #e6cb87;
+  box-shadow: 0 0 8px rgba(197, 160, 89, 0.3);
+}
+
+/* Card Hover Elevation - Document Palette */
+.luxury-card {
+  background: #180b33;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  border-radius: 6px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card:hover {
+  border-color: rgba(230, 203, 135, 0.7);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(197, 160, 89, 0.12);
+  transform: translateY(-4px);
+}
+
+.card-maroon {
+  background: linear-gradient(180deg, #23081e 0%, #150414 100%);
+  border: 1px solid rgba(159, 18, 57, 0.4);
+  border-radius: 6px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-maroon:hover {
+  border-color: rgba(244, 63, 94, 0.7);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(159, 18, 57, 0.25);
+  transform: translateY(-4px);
+}
+
+.wellness-card {
+  background: linear-gradient(180deg, #1b092a 0%, #12051e 100%);
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  border-radius: 6px;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.wellness-card:hover {
+  border-color: rgba(249, 115, 22, 0.75);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(249, 115, 22, 0.2);
+  transform: translateY(-4px);
 }
 
 /* 3D Interactive Tarot Rigging */
@@ -145,9 +394,9 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 36px;
   flex-wrap: wrap;
-  min-height: 420px;
+  min-height: 400px;
 }
 
 .tarot-slot {
@@ -167,19 +416,19 @@ img {
 }
 
 .interactive-card {
-  width: 225px;
-  height: 355px;
+  width: 220px;
+  height: 350px;
   position: relative;
   transform-style: preserve-3d;
   transition: transform 0.85s cubic-bezier(0.18, 0.9, 0.3, 1.25);
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
 @media (min-width: 1500px) {
   .interactive-card {
-    width: 245px;
-    height: 385px;
+    width: 240px;
+    height: 380px;
   }
 }
 
@@ -200,14 +449,14 @@ img {
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
-  border: 1px solid rgba(197, 160, 89, 0.3);
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
 }
 
 .card-back {
-  background: #08060d;
+  background: #110722;
 }
 
 .card-back img {
@@ -218,7 +467,7 @@ img {
 
 .card-front {
   transform: rotateY(180deg);
-  background: #0d0917;
+  background: #160a2e;
 }
 
 .card-front img {
@@ -231,8 +480,8 @@ img {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(4, 2, 7, 0.92);
-  backdrop-filter: blur(12px);
+  background: rgba(8, 3, 18, 0.94);
+  backdrop-filter: blur(14px);
   z-index: 200;
   display: none;
   align-items: center;
@@ -244,6 +493,40 @@ img {
   display: flex;
 }
 
+/* Cookie Consent Floating Atelier Bar */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  max-width: 980px;
+  margin: 0 auto;
+  background: rgba(22, 10, 46, 0.96);
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(197, 160, 89, 0.15);
+  backdrop-filter: blur(16px);
+  border-radius: 6px;
+  padding: 20px 24px;
+  z-index: 999;
+  display: none;
+  animation: slideUpCookie 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.cookie-banner.show {
+  display: block;
+}
+
+@keyframes slideUpCookie {
+  from {
+    transform: translateY(100px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 /* Scroll indicator animation */
 @keyframes scrollGlow {
   0%, 100% { opacity: 0.3; transform: scaleY(0.7); }
@@ -252,4 +535,152 @@ img {
 
 .scroll-line {
   animation: scrollGlow 2.2s infinite ease-in-out;
+}
+
+/* Scroll Progress Bar at Viewport Top */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3.5px;
+  width: 0%;
+  background: linear-gradient(90deg, #c5a059 0%, #f97316 45%, #ec4899 75%, #e6cb87 100%);
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.6), 0 0 18px rgba(230, 203, 135, 0.4);
+  pointer-events: none;
+  transition: width 0.08s ease-out;
+}
+
+/* Smooth Scroll Reveal System */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Active Nav Link Glowing Underline */
+.nav-link {
+  position: relative;
+  transition: color 0.25s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #c5a059, #f97316);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.nav-link:hover::after,
+.nav-link.nav-active::after {
+  width: 100%;
+}
+
+.nav-link.nav-active {
+  color: #e6cb87 !important;
+}
+
+/* Back to Top Floating Button */
+#back-to-top-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 90px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(22, 10, 46, 0.9);
+  border: 1px solid rgba(197, 160, 89, 0.45);
+  color: #e6cb87;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 40;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+#back-to-top-btn.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+#back-to-top-btn:hover {
+  background: #c5a059;
+  color: #080312;
+  border-color: #e6cb87;
+  box-shadow: 0 0 20px rgba(197, 160, 89, 0.6);
+  transform: translateY(-3px);
+}
+
+/* Interactive FAQ Accordion */
+.faq-header {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  transition: all 0.25s ease;
+}
+
+.faq-header:hover {
+  background: rgba(197, 160, 89, 0.05);
+}
+
+.faq-icon {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(180deg);
+  color: #f97316;
+}
+
+.faq-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+  padding: 0 22px;
+}
+
+.faq-item.open .faq-body {
+  max-height: 280px;
+  padding: 0 22px 18px 22px;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080312;
+}
+::-webkit-scrollbar-thumb {
+  background: #25124b;
+  border-radius: 4px;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c5a059;
 }
