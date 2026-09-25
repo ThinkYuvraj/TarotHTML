@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollProgressAndNav();
   initScrollReveal();
   initFAQAccordion();
+  initFeatured3DCarousel();
   initTarotDeck();
   initInteractiveAssessment();
   initFloatingQuickBar();
@@ -236,72 +237,44 @@ function initFAQAccordion() {
    ========================================================================== */
 function initNavigation() {
   const toggleBtn = document.getElementById('nav-toggle-btn');
-  const navLinks = document.getElementById('nav-links');
+  const mobileDrawer = document.getElementById('mobile-nav-drawer');
 
-  if (toggleBtn && navLinks) {
-    toggleBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('hidden');
-      navLinks.classList.toggle('flex');
-      navLinks.classList.toggle('flex-col');
-      navLinks.classList.toggle('absolute');
-      navLinks.classList.toggle('top-full');
-      navLinks.classList.toggle('left-0');
-      navLinks.classList.toggle('w-full');
-      navLinks.classList.toggle('bg-[#0f0721]');
-      navLinks.classList.toggle('p-6');
-      navLinks.classList.toggle('border-b');
-      navLinks.classList.toggle('border-[#c5a059]/30');
-      navLinks.classList.toggle('shadow-2xl');
+  if (toggleBtn && mobileDrawer) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = toggleBtn.classList.contains('is-active');
+      if (isOpen) {
+        toggleBtn.classList.remove('is-active');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        mobileDrawer.classList.add('drawer-hidden');
+        mobileDrawer.classList.remove('drawer-open');
+      } else {
+        toggleBtn.classList.add('is-active');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        mobileDrawer.classList.remove('drawer-hidden');
+        mobileDrawer.classList.add('drawer-open');
+      }
     });
 
-    navLinks.querySelectorAll('a').forEach(link => {
+    mobileDrawer.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
-        if (window.innerWidth < 768) {
-          navLinks.classList.add('hidden');
-          navLinks.classList.remove('flex', 'flex-col', 'absolute', 'top-full', 'left-0', 'w-full', 'bg-[#0f0721]', 'p-6', 'border-b', 'border-[#c5a059]/30', 'shadow-2xl');
-        }
+        toggleBtn.classList.remove('is-active');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        mobileDrawer.classList.add('drawer-hidden');
+        mobileDrawer.classList.remove('drawer-open');
       });
     });
-  }
-}
 
-/* ==========================================================================
-   3. WEB AUDIO SOUND EFFECTS
-   ========================================================================== */
-let audioCtx = null;
-function playTarotChime() {
-  try {
-    if (!audioCtx) {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (AudioContext) audioCtx = new AudioContext();
-    }
-    if (!audioCtx) return;
-    if (audioCtx.state === 'suspended') {
-      audioCtx.resume();
-    }
-
-    const now = audioCtx.currentTime;
-    const notes = [587.33, 739.99, 880.00, 1174.66];
-    const note = notes[Math.floor(Math.random() * notes.length)];
-
-    const osc = audioCtx.createOscillator();
-    const gain = audioCtx.createGain();
-
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(note, now);
-    osc.frequency.exponentialRampToValueAtTime(note * 1.5, now + 0.8);
-
-    gain.gain.setValueAtTime(0.001, now);
-    gain.gain.exponentialRampToValueAtTime(0.08, now + 0.05);
-    gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
-
-    osc.connect(gain);
-    gain.connect(audioCtx.destination);
-
-    osc.start(now);
-    osc.stop(now + 1.3);
-  } catch (e) {
-    // Audio fallback
+    // Close when clicking outside navbar
+    document.addEventListener('click', (e) => {
+      const nav = document.getElementById('main-navbar');
+      if (nav && !nav.contains(e.target) && toggleBtn.classList.contains('is-active')) {
+        toggleBtn.classList.remove('is-active');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        mobileDrawer.classList.add('drawer-hidden');
+        mobileDrawer.classList.remove('drawer-open');
+      }
+    });
   }
 }
 
@@ -381,6 +354,379 @@ const TAROT_CARDS = [
   }
 ];
 
+/* ==========================================================================
+   4.5. 3D-STYLE INTERACTIVE FEATURED CARD CAROUSEL (Coverflow & Touch 3D)
+   ========================================================================== */
+function initFeatured3DCarousel() {
+  const stage = document.getElementById('carousel-3d-stage');
+  const track = document.getElementById('carousel-3d-track');
+  const prevBtn = document.getElementById('carousel-prev-btn');
+  const nextBtn = document.getElementById('carousel-next-btn');
+  const dotsContainer = document.getElementById('carousel-dots-container');
+  const flipBtn = document.getElementById('carousel-flip-btn');
+  const inspectBtn = document.getElementById('carousel-inspect-btn');
+  const autoplayToggleBtn = document.getElementById('carousel-autoplay-btn');
+  const hudTitle = document.getElementById('carousel-hud-title');
+  const hudArcana = document.getElementById('carousel-hud-arcana');
+  const hudKeywords = document.getElementById('carousel-hud-keywords');
+  const hudSummary = document.getElementById('carousel-hud-summary');
+  const hudGuidance = document.getElementById('carousel-hud-guidance');
+
+  if (!stage || !track) return;
+
+  let activeIndex = 0;
+  const total = TAROT_CARDS.length;
+  let isFlipped = false;
+  let autoplayInterval = null;
+  let isAutoplayRunning = true;
+
+  // Touch / Drag interaction state
+  let isDragging = false;
+  let startX = 0;
+  let currentX = 0;
+  let startY = 0;
+  let isHorizontalGesture = null;
+
+  // 1. Render all 7 cards into track
+  track.innerHTML = '';
+  TAROT_CARDS.forEach((card, index) => {
+    const item = document.createElement('div');
+    item.className = 'carousel-3d-item';
+    item.dataset.index = index;
+    item.setAttribute('role', 'button');
+    item.setAttribute('tabindex', '0');
+    item.setAttribute('aria-label', `${card.name} - ${card.arcana}`);
+
+    item.innerHTML = `
+      <div class="carousel-card-inner">
+        <!-- Front Face: Card Artwork -->
+        <div class="carousel-card-face carousel-face-front">
+          <img src="${card.image}" alt="${card.name}" loading="lazy">
+          <div class="absolute bottom-2 left-2 right-2 bg-[#080312]/92 border border-[#c5a059]/40 py-1.5 px-2.5 rounded backdrop-blur-md flex items-center justify-between pointer-events-none shadow-md">
+            <span class="font-serif text-xs text-white font-medium truncate">${card.name}</span>
+            <span class="text-[0.55rem] uppercase tracking-wider text-[#e6cb87] font-semibold shrink-0">${card.arcana}</span>
+          </div>
+        </div>
+
+        <!-- Back Face: Sacred Meaning & Mukta's Remedy -->
+        <div class="carousel-card-face carousel-face-back">
+          <div>
+            <div class="flex items-center justify-between border-b border-[#c5a059]/30 pb-1.5 mb-2">
+              <span class="font-serif text-sm font-semibold text-white">${card.name}</span>
+              <span class="text-[0.58rem] uppercase tracking-wider text-[#e6cb87] font-semibold">${card.arcana}</span>
+            </div>
+            <div class="text-[0.62rem] text-[#fbbf24] font-semibold mb-1 tracking-wide">${card.keywords}</div>
+            <p class="text-[0.68rem] text-[#c4b5d4] leading-relaxed line-clamp-4 mb-2">${card.summary}</p>
+          </div>
+          <div class="border-t border-[#c5a059]/30 pt-1.5 bg-[#25124b]/60 p-2 rounded border border-[#c5a059]/20">
+            <div class="text-[0.58rem] font-bold uppercase text-[#e6cb87] tracking-wider mb-0.5">Mukta's Holistic Remedy:</div>
+            <p class="font-serif italic text-white text-[0.62rem] leading-snug line-clamp-3">${card.guidance}</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Click handler on item
+    item.addEventListener('click', () => {
+      if (index === activeIndex) {
+        toggleFlipCard();
+      } else {
+        goToIndex(index);
+      }
+    });
+
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (index === activeIndex) {
+          toggleFlipCard();
+        } else {
+          goToIndex(index);
+        }
+      }
+    });
+
+    track.appendChild(item);
+  });
+
+  // 2. Render Indicator Dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('button');
+      dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+      dot.setAttribute('aria-label', `Go to ${TAROT_CARDS[i].name}`);
+      dot.addEventListener('click', () => goToIndex(i));
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  const items = track.querySelectorAll('.carousel-3d-item');
+
+  // 3. Update 3D Geometry Positions
+  function update3DPositions() {
+    const isMobile = window.innerWidth < 640;
+    const isTablet = window.innerWidth >= 640 && window.innerWidth < 1024;
+    const spacing = isMobile ? 120 : (isTablet ? 165 : 210);
+    const depthZ = isMobile ? -95 : (isTablet ? -130 : -160);
+    const rotAngle = isMobile ? 26 : 32;
+
+    items.forEach((item, idx) => {
+      let offset = idx - activeIndex;
+      if (offset > total / 2) offset -= total;
+      if (offset < -total / 2) offset += total;
+
+      const absOffset = Math.abs(offset);
+
+      if (absOffset === 0) {
+        // Center Active Card
+        item.style.transform = `translateX(0px) translateZ(0px) rotateY(0deg) scale(1.06)`;
+        item.style.opacity = '1';
+        item.style.filter = 'brightness(1)';
+        item.style.zIndex = '15';
+        item.style.pointerEvents = 'auto';
+        item.classList.add('active');
+
+        // Apply flip class if active card is flipped
+        if (isFlipped) {
+          item.classList.add('card-flipped');
+        } else {
+          item.classList.remove('card-flipped');
+        }
+      } else if (absOffset === 1) {
+        const dir = offset > 0 ? 1 : -1;
+        item.style.transform = `translateX(${dir * spacing}px) translateZ(${depthZ}px) rotateY(${-dir * rotAngle}deg) scale(0.85)`;
+        item.style.opacity = '0.82';
+        item.style.filter = 'brightness(0.75)';
+        item.style.zIndex = '8';
+        item.style.pointerEvents = 'auto';
+        item.classList.remove('active', 'card-flipped');
+      } else if (absOffset === 2) {
+        const dir = offset > 0 ? 1 : -1;
+        item.style.transform = `translateX(${dir * spacing * 1.85}px) translateZ(${depthZ * 1.9}px) rotateY(${-dir * rotAngle * 1.4}deg) scale(0.70)`;
+        item.style.opacity = isMobile ? '0.25' : '0.45';
+        item.style.filter = 'brightness(0.55)';
+        item.style.zIndex = '3';
+        item.style.pointerEvents = 'auto';
+        item.classList.remove('active', 'card-flipped');
+      } else {
+        item.style.transform = `translateX(${offset * spacing * 2.1}px) translateZ(-320px) rotateY(${offset > 0 ? -55 : 55}deg) scale(0.58)`;
+        item.style.opacity = '0';
+        item.style.filter = 'brightness(0.3)';
+        item.style.zIndex = '1';
+        item.style.pointerEvents = 'none';
+        item.classList.remove('active', 'card-flipped');
+      }
+    });
+
+    // Update Dots
+    if (dotsContainer) {
+      const dots = dotsContainer.querySelectorAll('.carousel-dot');
+      dots.forEach((dot, i) => {
+        if (i === activeIndex) dot.classList.add('active');
+        else dot.classList.remove('active');
+      });
+    }
+
+    // Update HUD info
+    const currentCard = TAROT_CARDS[activeIndex];
+    if (hudTitle) hudTitle.textContent = currentCard.name;
+    if (hudArcana) hudArcana.textContent = currentCard.arcana;
+    if (hudKeywords) hudKeywords.textContent = currentCard.keywords;
+    if (hudSummary) hudSummary.textContent = currentCard.summary;
+    if (hudGuidance) hudGuidance.textContent = currentCard.guidance;
+
+    // Update Flip button label
+    if (flipBtn) {
+      flipBtn.innerHTML = isFlipped
+        ? `<span>🔄</span> SHOW CARD ARTWORK`
+        : `<span>✨</span> REVEAL 3D GUIDANCE`;
+    }
+  }
+
+  function goToIndex(newIndex) {
+    if (newIndex === activeIndex) return;
+    isFlipped = false;
+    activeIndex = (newIndex + total) % total;
+    update3DPositions();
+  }
+
+  function nextCard() {
+    goToIndex(activeIndex + 1);
+  }
+
+  function prevCard() {
+    goToIndex(activeIndex - 1);
+  }
+
+  function toggleFlipCard() {
+    isFlipped = !isFlipped;
+    const activeItem = track.querySelector('.carousel-3d-item.active');
+    if (activeItem) {
+      if (isFlipped) activeItem.classList.add('card-flipped');
+      else activeItem.classList.remove('card-flipped');
+    }
+    if (flipBtn) {
+      flipBtn.innerHTML = isFlipped
+        ? `<span>🔄</span> SHOW CARD ARTWORK`
+        : `<span>✨</span> REVEAL 3D GUIDANCE`;
+    }
+  }
+
+  // Button Listeners
+  if (prevBtn) prevBtn.addEventListener('click', () => { prevCard(); resetAutoplayTimer(); });
+  if (nextBtn) nextBtn.addEventListener('click', () => { nextCard(); resetAutoplayTimer(); });
+  if (flipBtn) flipBtn.addEventListener('click', () => { toggleFlipCard(); resetAutoplayTimer(); });
+
+  if (inspectBtn) {
+    inspectBtn.addEventListener('click', () => {
+      const currentCard = TAROT_CARDS[activeIndex];
+      if (typeof window.openTarotCardModal === 'function') {
+        window.openTarotCardModal(currentCard);
+      }
+    });
+  }
+
+  // Autoplay functionality
+  function startAutoplay() {
+    stopAutoplay();
+    if (isAutoplayRunning) {
+      autoplayInterval = setInterval(() => {
+        nextCard();
+      }, 4800);
+    }
+  }
+
+  function stopAutoplay() {
+    if (autoplayInterval) {
+      clearInterval(autoplayInterval);
+      autoplayInterval = null;
+    }
+  }
+
+  function resetAutoplayTimer() {
+    if (isAutoplayRunning) {
+      startAutoplay();
+    }
+  }
+
+  if (autoplayToggleBtn) {
+    autoplayToggleBtn.addEventListener('click', () => {
+      isAutoplayRunning = !isAutoplayRunning;
+      if (isAutoplayRunning) {
+        autoplayToggleBtn.classList.add('border-[#e6cb87]', 'text-[#e6cb87]');
+        autoplayToggleBtn.classList.remove('opacity-60');
+        autoplayToggleBtn.innerHTML = '<span>⏸</span> Auto-Play ON';
+        startAutoplay();
+      } else {
+        autoplayToggleBtn.classList.remove('border-[#e6cb87]', 'text-[#e6cb87]');
+        autoplayToggleBtn.classList.add('opacity-60');
+        autoplayToggleBtn.innerHTML = '<span>▶</span> Auto-Play Paused';
+        stopAutoplay();
+      }
+    });
+  }
+
+  // Pause autoplay on mouse enter / touch start
+  stage.addEventListener('mouseenter', stopAutoplay);
+  stage.addEventListener('mouseleave', () => { if (isAutoplayRunning) startAutoplay(); });
+
+  // 4. Touch Gestures & Swipe Detection (Mobile & Tablet)
+  stage.addEventListener('touchstart', (e) => {
+    stopAutoplay();
+    isDragging = true;
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
+    currentX = startX;
+    isHorizontalGesture = null;
+  }, { passive: true });
+
+  stage.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+    currentX = e.touches[0].clientX;
+    const currentY = e.touches[0].clientY;
+    const diffX = currentX - startX;
+    const diffY = currentY - startY;
+
+    if (isHorizontalGesture === null) {
+      if (Math.abs(diffX) > 8 || Math.abs(diffY) > 8) {
+        isHorizontalGesture = Math.abs(diffX) > Math.abs(diffY);
+      }
+    }
+
+    if (isHorizontalGesture) {
+      if (e.cancelable) e.preventDefault();
+    }
+  }, { passive: false });
+
+  stage.addEventListener('touchend', () => {
+    if (!isDragging) return;
+    isDragging = false;
+    const diffX = currentX - startX;
+    if (isHorizontalGesture && Math.abs(diffX) > 38) {
+      if (diffX < 0) {
+        nextCard();
+      } else {
+        prevCard();
+      }
+    }
+    if (isAutoplayRunning) startAutoplay();
+  }, { passive: true });
+
+  // 5. Mouse Dragging Support (Desktop)
+  let mouseStartX = 0;
+  let isMouseDown = false;
+
+  stage.addEventListener('mousedown', (e) => {
+    if (e.button !== 0) return;
+    isMouseDown = true;
+    mouseStartX = e.clientX;
+    stopAutoplay();
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!isMouseDown) return;
+    const diff = e.clientX - mouseStartX;
+    if (Math.abs(diff) > 50) {
+      if (diff < 0) nextCard();
+      else prevCard();
+      isMouseDown = false;
+    }
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (isMouseDown) {
+      isMouseDown = false;
+      if (isAutoplayRunning) startAutoplay();
+    }
+  });
+
+  // Keyboard navigation
+  stage.setAttribute('tabindex', '0');
+  stage.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      prevCard();
+      resetAutoplayTimer();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      nextCard();
+      resetAutoplayTimer();
+    }
+  });
+
+  // Window resize handler
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(update3DPositions, 100);
+  });
+
+  // Initial render
+  update3DPositions();
+  startAutoplay();
+}
+
 function initTarotDeck() {
   const container = document.getElementById('reading-deck-container');
   const singleTab = document.getElementById('tab-single');
@@ -436,7 +782,6 @@ function initTarotDeck() {
 
       function triggerFlip() {
         if (!card.classList.contains('revealed')) {
-          playTarotChime();
           card.classList.add('revealed');
           checkAllRevealed();
         }
@@ -540,7 +885,6 @@ function initTarotDeck() {
 
   if (reshuffleBtn) {
     reshuffleBtn.addEventListener('click', () => {
-      playTarotChime();
       setupSpread();
     });
   }
@@ -560,18 +904,29 @@ function initGalleryModals() {
   if (!modalOverlay) return;
 
   function openCardModal(cardData) {
-    document.getElementById('modal-card-title').textContent = cardData.name;
-    document.getElementById('modal-card-arcana').textContent = cardData.arcana;
-    document.getElementById('modal-card-keywords').textContent = cardData.keywords;
-    document.getElementById('modal-card-desc').textContent = cardData.fullMeaning;
-    document.getElementById('modal-card-guidance').textContent = cardData.guidance;
+    if (!cardData) return;
+    const titleEl = document.getElementById('modal-card-title');
+    const arcanaEl = document.getElementById('modal-card-arcana');
+    const keywordsEl = document.getElementById('modal-card-keywords');
+    const descEl = document.getElementById('modal-card-desc');
+    const guidanceEl = document.getElementById('modal-card-guidance');
     const imgEl = document.getElementById('modal-card-img');
-    imgEl.src = cardData.image;
-    imgEl.alt = cardData.name;
+
+    if (titleEl) titleEl.textContent = cardData.name;
+    if (arcanaEl) arcanaEl.textContent = cardData.arcana;
+    if (keywordsEl) keywordsEl.textContent = cardData.keywords;
+    if (descEl) descEl.textContent = cardData.fullMeaning || cardData.summary;
+    if (guidanceEl) guidanceEl.textContent = cardData.guidance;
+    if (imgEl) {
+      imgEl.src = cardData.image;
+      imgEl.alt = cardData.name;
+    }
 
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
+
+  window.openTarotCardModal = openCardModal;
 
   function closeModal() {
     modalOverlay.classList.remove('active');

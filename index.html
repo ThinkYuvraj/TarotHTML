@@ -130,22 +130,17 @@
         <span class="font-serif text-lg sm:text-xl font-medium tracking-[0.15em] text-white group-hover:text-[#e6cb87] transition-colors flex items-center gap-2">
           <span class="text-[#e6cb87] text-sm">✦</span> MUKTA BHATNAGAR
         </span>
-        <span class="text-xs font-semibold tracking-widest text-[#c5a059] uppercase mt-0.5">
+        <span class="text-[0.6rem] sm:text-xs font-semibold tracking-widest text-[#c5a059] uppercase mt-0.5">
           Certified Tarot Master &bull; Holistic Health Coach
         </span>
       </a>
 
-      <!-- Mobile Hamburger Button -->
-      <button class="md:hidden bg-[#160a2e] border border-[#c5a059]/30 text-[#e6cb87] hover:text-white px-3 py-1.5 rounded cursor-pointer transition-colors" id="nav-toggle-btn" aria-label="Toggle navigation menu">
-        &#9776;
-      </button>
-
       <!-- Desktop Nav Links with Scroll-Spy -->
-      <ul class="hidden md:flex items-center gap-3 lg:gap-5 list-none m-0 p-0" id="nav-links">
+      <ul class="hidden lg:flex items-center gap-3 xl:gap-5 list-none m-0 p-0" id="nav-links">
         <li><a href="#home" class="nav-link text-xs font-semibold tracking-wider text-[#c4b5d4] hover:text-[#e6cb87] transition-colors" data-section="home">HOME</a></li>
         <li><a href="#about" class="nav-link text-xs font-semibold tracking-wider text-[#c4b5d4] hover:text-[#e6cb87] transition-colors" data-section="about">ABOUT</a></li>
         <li><a href="#tarot-process" class="nav-link text-xs font-semibold tracking-wider text-[#c4b5d4] hover:text-[#e6cb87] transition-colors" data-section="tarot-process">READING PROCESS</a></li>
-        <li><a href="#ethics" class="nav-link text-xs font-semibold tracking-wider text-[#c4b5d4] hover:text-[#e6cb87] transition-colors" data-section="ethics">CODE OF ETHICS</a></li>
+        <li><a href="#featured-carousel" class="nav-link text-xs font-semibold tracking-wider text-[#c4b5d4] hover:text-[#e6cb87] transition-colors" data-section="featured-carousel">3D CAROUSEL</a></li>
         <li><a href="#services" class="nav-link text-xs font-semibold tracking-wider text-[#c4b5d4] hover:text-[#e6cb87] transition-colors" data-section="services">OFFERINGS</a></li>
         <li><a href="#health-coaching" class="nav-link text-xs font-semibold tracking-wider text-[#c4b5d4] hover:text-[#e6cb87] transition-colors" data-section="health-coaching">CELLULAR HEALTH</a></li>
         <li><a href="#oracle" class="nav-link text-xs font-semibold tracking-wider text-[#c4b5d4] hover:text-[#e6cb87] transition-colors" data-section="oracle">DIGITAL ALTAR</a></li>
@@ -153,15 +148,44 @@
         <li><a href="#contact" class="nav-link text-xs font-semibold tracking-wider text-[#c4b5d4] hover:text-[#e6cb87] transition-colors" data-section="contact">BOOK</a></li>
       </ul>
 
-      <!-- Sound Ambiance + WhatsApp CTA -->
+      <!-- WhatsApp CTA (Desktop) -->
       <div class="hidden lg:flex items-center gap-3">
-        <button class="audio-toggle-btn hidden xl:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-[#c5a059]/30 text-xs text-[#e6cb87] hover:border-[#e6cb87] transition-all cursor-pointer" title="Toggle 528Hz Solfeggio Zen Atmosphere">
-          <div class="audio-waves"><span></span><span></span><span></span></div>
-          <span class="audio-label font-medium">Sound Atmosphere</span>
-        </button>
         <a href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I%20would%20like%20to%20book%20a%20Holistic%20Consultation." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-pill">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
           CONSULT NOW
+        </a>
+      </div>
+
+      <!-- Mobile & Tablet Controls (Hamburger) -->
+      <div class="flex items-center gap-2.5 lg:hidden">
+        <button class="bg-[#160a2e] border border-[#c5a059]/40 rounded cursor-pointer transition-colors" id="nav-toggle-btn" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile & Tablet Slide-Down Navigation Drawer -->
+    <div id="mobile-nav-drawer" class="drawer-hidden lg:hidden" role="navigation" aria-label="Mobile Navigation">
+      <ul class="flex flex-col gap-2 list-none m-0 p-0 text-xs">
+        <li><a href="#home" class="block py-2.5 px-3 rounded hover:bg-[#25124b] text-[#c4b5d4] hover:text-[#e6cb87] font-semibold border-b border-white/5">HOME</a></li>
+        <li><a href="#about" class="block py-2.5 px-3 rounded hover:bg-[#25124b] text-[#c4b5d4] hover:text-[#e6cb87] font-semibold border-b border-white/5">ABOUT MUKTA</a></li>
+        <li><a href="#tarot-process" class="block py-2.5 px-3 rounded hover:bg-[#25124b] text-[#c4b5d4] hover:text-[#e6cb87] font-semibold border-b border-white/5">READING PROCESS</a></li>
+        <li><a href="#featured-carousel" class="block py-2.5 px-3 rounded bg-[#c5a059]/15 border border-[#c5a059]/40 text-[#e6cb87] font-semibold flex items-center justify-between"><span>✦ 3D FEATURED CAROUSEL</span><span class="text-[0.65rem] px-2 py-0.5 bg-[#c5a059]/30 rounded text-white font-bold uppercase tracking-wider">Explore 3D</span></a></li>
+        <li><a href="#ethics" class="block py-2.5 px-3 rounded hover:bg-[#25124b] text-[#c4b5d4] hover:text-[#e6cb87] font-semibold border-b border-white/5">CODE OF ETHICS</a></li>
+        <li><a href="#services" class="block py-2.5 px-3 rounded hover:bg-[#25124b] text-[#c4b5d4] hover:text-[#e6cb87] font-semibold border-b border-white/5">OFFERINGS &amp; PRICING</a></li>
+        <li><a href="#health-coaching" class="block py-2.5 px-3 rounded hover:bg-[#25124b] text-[#c4b5d4] hover:text-[#e6cb87] font-semibold border-b border-white/5">CELLULAR HEALTH (ISMN)</a></li>
+        <li><a href="#oracle" class="block py-2.5 px-3 rounded hover:bg-[#25124b] text-[#c4b5d4] hover:text-[#e6cb87] font-semibold border-b border-white/5">DIGITAL ALTAR</a></li>
+        <li><a href="#reviews" class="block py-2.5 px-3 rounded hover:bg-[#25124b] text-[#c4b5d4] hover:text-[#e6cb87] font-semibold border-b border-white/5">TESTIMONIALS</a></li>
+        <li><a href="#contact" class="block py-2.5 px-3 rounded hover:bg-[#25124b] text-[#c4b5d4] hover:text-[#e6cb87] font-semibold">BOOK SESSION</a></li>
+      </ul>
+      
+      <div class="mt-4 pt-3 border-t border-[#c5a059]/20 flex flex-col gap-2.5">
+        <a href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I%20would%20like%20to%20book%20a%20Holistic%20Consultation." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-pill w-full text-center text-xs py-2.5 justify-center">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
+          INSTANT WHATSAPP CONSULT (+91 9711241456)
         </a>
       </div>
     </div>
@@ -403,85 +427,89 @@
   <!-- ==========================================
        THE MIND-BODY-SOUL HARMONY FRAMEWORK
        ========================================== -->
-  <section class="py-12 lg:py-18 border-t border-[#c5a059]/15 bg-[#0f0721] relative z-10 reveal-on-scroll overflow-hidden" id="holistic-framework">
+  <section class="py-8 sm:py-12 lg:py-16 border-t border-[#c5a059]/15 bg-[#0f0721] relative z-10 reveal-on-scroll overflow-hidden" id="holistic-framework">
     <div class="site-container">
       
-      <div class="text-center max-w-3xl lg:max-w-4xl mx-auto mb-10">
-        <div class="inline-flex items-center gap-2 text-[0.7rem] font-bold tracking-[0.2em] text-[#c5a059] uppercase mb-2">
+      <div class="text-center max-w-3xl lg:max-w-4xl mx-auto mb-6 sm:mb-10">
+        <div class="inline-flex items-center gap-2 text-[0.7rem] font-bold tracking-[0.2em] text-[#c5a059] uppercase mb-1.5">
           <span>🌿</span> THE 360° INTEGRATION ARCHITECTURE
         </div>
-        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-white mb-3">
+        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-white mb-2 sm:mb-3">
           Why Mind, Body & Soul Must Heal Together
         </h2>
-        <p class="text-[#c4b5d4] text-sm leading-relaxed">
+        <p class="text-[#c4b5d4] text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
           True well-being is never about treating an isolated symptom. When mental doubts create physical stress, cellular nutrition restores vital energy. Mukta addresses all three pillars harmoniously.
         </p>
+        <!-- Mobile swipe indicator hint -->
+        <div class="md:hidden mt-2 text-[0.68rem] text-[#e6cb87] flex items-center justify-center gap-1">
+          <span>👉</span> <em>Swipe horizontally to explore all 3 pillars</em>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+      <div class="mobile-swipe-rail md:grid md:grid-cols-3 md:gap-6 lg:gap-8">
         
         <!-- Pillar 1: MIND -->
-        <div class="luxury-card p-6 sm:p-7 flex flex-col justify-between group">
+        <div class="w-[82vw] sm:w-[340px] md:w-auto luxury-card p-5 sm:p-7 flex flex-col justify-between group">
           <div>
-            <div class="w-12 h-12 rounded-xl border border-[#c5a059]/50 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-xl mb-5 group-hover:scale-105 transition-transform shadow-inner">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl border border-[#c5a059]/50 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform shadow-inner">
               🧠
             </div>
-            <div class="text-[0.66rem] font-bold tracking-[0.18em] uppercase text-[#c5a059] mb-1.5">PILLAR ONE &bull; SOUL & MIND</div>
-            <h3 class="font-serif text-xl text-white mb-2.5">Mind: Emotional Clarity</h3>
-            <p class="text-[#c4b5d4] text-xs leading-relaxed mb-5">
+            <div class="text-[0.64rem] font-bold tracking-[0.18em] uppercase text-[#c5a059] mb-1">PILLAR ONE &bull; SOUL & MIND</div>
+            <h3 class="font-serif text-lg sm:text-xl text-white mb-2">Mind: Emotional Clarity</h3>
+            <p class="text-[#c4b5d4] text-xs leading-relaxed mb-4">
               Untangling mental turbulence, overcoming persistent doubt, anxiety, and decision fatigue. Tarot archetypes decode your subconscious patterns and illuminate the path forward.
             </p>
-            <ul class="space-y-2 text-xs text-[#fdfbf7]">
+            <ul class="space-y-1.5 text-xs text-[#fdfbf7]">
               <li class="flex items-center gap-2"><span class="text-[#e6cb87]">✦</span> Removing fear-driven doubts & confusion</li>
               <li class="flex items-center gap-2"><span class="text-[#e6cb87]">✦</span> Confident decision-making protocols</li>
               <li class="flex items-center gap-2"><span class="text-[#e6cb87]">✦</span> Relationship & emotional peace</li>
             </ul>
           </div>
-          <div class="mt-5 pt-3.5 border-t border-white/10">
+          <div class="mt-4 pt-3 border-t border-white/10">
             <span class="text-xs text-[#e6cb87] font-semibold">Service: Tarot Guidance & Counseling</span>
           </div>
         </div>
 
         <!-- Pillar 2: BODY -->
-        <div class="luxury-card p-6 sm:p-7 flex flex-col justify-between group">
+        <div class="w-[82vw] sm:w-[340px] md:w-auto luxury-card p-5 sm:p-7 flex flex-col justify-between group">
           <div>
-            <div class="w-12 h-12 rounded-xl border border-[#c5a059]/50 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-xl mb-5 group-hover:scale-105 transition-transform shadow-inner">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl border border-[#c5a059]/50 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform shadow-inner">
               🌿
             </div>
-            <div class="text-[0.66rem] font-bold tracking-[0.18em] uppercase text-[#e6cb87] mb-1.5">PILLAR TWO &bull; BODY & NUTRITION</div>
-            <h3 class="font-serif text-xl text-white mb-2.5">Body: Cellular Vitality</h3>
-            <p class="text-[#c4b5d4] text-xs leading-relaxed mb-5">
+            <div class="text-[0.64rem] font-bold tracking-[0.18em] uppercase text-[#e6cb87] mb-1">PILLAR TWO &bull; BODY & NUTRITION</div>
+            <h3 class="font-serif text-lg sm:text-xl text-white mb-2">Body: Cellular Vitality</h3>
+            <p class="text-[#c4b5d4] text-xs leading-relaxed mb-4">
               Restoring your physical vessel at the cellular foundation. Grounded in Mukta's ISMN Diploma in Integrative Dietetics and her personal 2010 breast cancer recovery triumph.
             </p>
-            <ul class="space-y-2 text-xs text-[#fdfbf7]">
+            <ul class="space-y-1.5 text-xs text-[#fdfbf7]">
               <li class="flex items-center gap-2"><span class="text-[#e6cb87]">✦</span> Everyday cellular nutrition & recipes</li>
               <li class="flex items-center gap-2"><span class="text-[#e6cb87]">✦</span> Gut health & energy restoration</li>
               <li class="flex items-center gap-2"><span class="text-[#e6cb87]">✦</span> Oats, Jowar atta, Makhana, Omega-3s</li>
             </ul>
           </div>
-          <div class="mt-5 pt-3.5 border-t border-white/10">
+          <div class="mt-4 pt-3 border-t border-white/10">
             <span class="text-xs text-[#e6cb87] font-semibold">Service: ISMN Cellular Health Coaching</span>
           </div>
         </div>
 
         <!-- Pillar 3: SOUL -->
-        <div class="luxury-card p-6 sm:p-7 flex flex-col justify-between group">
+        <div class="w-[82vw] sm:w-[340px] md:w-auto luxury-card p-5 sm:p-7 flex flex-col justify-between group">
           <div>
-            <div class="w-12 h-12 rounded-xl border border-[#c5a059]/50 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-xl mb-5 group-hover:scale-105 transition-transform shadow-inner">
+            <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl border border-[#c5a059]/50 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform shadow-inner">
               ✨
             </div>
-            <div class="text-[0.66rem] font-bold tracking-[0.18em] uppercase text-[#c5a059] mb-1.5">PILLAR THREE &bull; KARMIC HARMONY</div>
-            <h3 class="font-serif text-xl text-white mb-2.5">Soul: Remedies & Harmony</h3>
-            <p class="text-[#c4b5d4] text-xs leading-relaxed mb-5">
+            <div class="text-[0.64rem] font-bold tracking-[0.18em] uppercase text-[#c5a059] mb-1">PILLAR THREE &bull; KARMIC HARMONY</div>
+            <h3 class="font-serif text-lg sm:text-xl text-white mb-2">Soul: Remedies & Harmony</h3>
+            <p class="text-[#c4b5d4] text-xs leading-relaxed mb-4">
               Aligning your karmic energy and restoring serene spiritual resonance. Actionable, personalized remedies bring positive momentum to long-pending tasks and life aspirations.
             </p>
-            <ul class="space-y-2 text-xs text-[#fdfbf7]">
+            <ul class="space-y-1.5 text-xs text-[#fdfbf7]">
               <li class="flex items-center gap-2"><span class="text-[#e6cb87]">✦</span> Occult Academy certified remedies</li>
               <li class="flex items-center gap-2"><span class="text-[#e6cb87]">✦</span> 30-Day monthly spiritual roadmaps</li>
               <li class="flex items-center gap-2"><span class="text-[#e6cb87]">✦</span> Harmonizing personal & family energies</li>
             </ul>
           </div>
-          <div class="mt-5 pt-3.5 border-t border-white/10">
+          <div class="mt-4 pt-3 border-t border-white/10">
             <span class="text-xs text-[#e6cb87] font-semibold">Service: Personalized Spiritual Remedies</span>
           </div>
         </div>
@@ -493,96 +521,99 @@
   <!-- ==========================================
        HOW A PROFESSIONAL TAROT READING WORKS (4-STEP CONSULTATION PROCESS)
        ========================================== -->
-  <section class="py-12 lg:py-18 border-t border-[#c5a059]/15 bg-[#080312] relative z-10 reveal-on-scroll overflow-hidden" id="tarot-process">
+  <section class="py-8 sm:py-12 lg:py-16 border-t border-[#c5a059]/15 bg-[#080312] relative z-10 reveal-on-scroll overflow-hidden" id="tarot-process">
     <div class="site-container">
       
-      <div class="text-center max-w-3xl lg:max-w-4xl mx-auto mb-12">
-        <div class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-[#c5a059] uppercase mb-2">
+      <div class="text-center max-w-3xl lg:max-w-4xl mx-auto mb-6 sm:mb-10">
+        <div class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-[#c5a059] uppercase mb-1.5">
           <span>✦</span> THE SACRED METHODOLOGY
         </div>
-        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-3">
+        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-white mb-2 sm:mb-3">
           How Your Professional Tarot Session Works
         </h2>
-        <p class="text-[#c4b5d4] text-sm sm:text-base leading-relaxed">
+        <p class="text-[#c4b5d4] text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
           Every consultation with Mukta Bhatnagar is conducted in a tranquil, confidential sanctuary. We move systematically from confusion to absolute clarity and actionable remedies.
         </p>
+        <div class="md:hidden mt-2 text-[0.68rem] text-[#e6cb87] flex items-center justify-center gap-1">
+          <span>👉</span> <em>Swipe horizontally to see the 4 steps</em>
+        </div>
       </div>
 
-      <!-- 4-Step Process Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- 4-Step Process Grid / Mobile Rail -->
+      <div class="mobile-swipe-rail md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6">
         
         <!-- Step 1 -->
-        <div class="luxury-card p-6 sm:p-7 relative flex flex-col justify-between group">
-          <div class="absolute -top-3.5 left-6 bg-[#c5a059] text-[#080312] text-[0.65rem] font-bold tracking-widest uppercase px-3 py-0.5 rounded-full shadow-md">
+        <div class="w-[76vw] sm:w-[270px] md:w-auto luxury-card p-5 sm:p-7 relative flex flex-col justify-between group">
+          <div class="absolute -top-3 left-4 sm:left-6 bg-[#c5a059] text-[#080312] text-[0.62rem] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full shadow-md">
             STEP 01
           </div>
           <div>
-            <div class="w-12 h-12 rounded-xl border border-[#c5a059]/40 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-xl mb-5 mt-2 group-hover:scale-105 transition-transform">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-[#c5a059]/40 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-lg sm:text-xl mb-4 mt-1 group-hover:scale-105 transition-transform">
               🎯
             </div>
-            <h3 class="font-serif text-lg text-white mb-2 font-medium">Intention &amp; Question Framing</h3>
+            <h3 class="font-serif text-base sm:text-lg text-white mb-2 font-medium">Intention &amp; Question Framing</h3>
             <p class="text-[#c4b5d4] text-xs leading-relaxed">
               We begin by refining your situation into precise, empowering questions. Clear questions cut through emotional noise to reveal root causes in love, career, or family dilemmas.
             </p>
           </div>
-          <div class="mt-4 pt-3 border-t border-white/10 text-[0.7rem] text-[#e6cb87] font-semibold">
+          <div class="mt-4 pt-3 border-t border-white/10 text-[0.68rem] text-[#e6cb87] font-semibold">
             ✦ Laser Focus &amp; Zero Ambiguity
           </div>
         </div>
 
         <!-- Step 2 -->
-        <div class="luxury-card p-6 sm:p-7 relative flex flex-col justify-between group">
-          <div class="absolute -top-3.5 left-6 bg-[#c5a059] text-[#080312] text-[0.65rem] font-bold tracking-widest uppercase px-3 py-0.5 rounded-full shadow-md">
+        <div class="w-[76vw] sm:w-[270px] md:w-auto luxury-card p-5 sm:p-7 relative flex flex-col justify-between group">
+          <div class="absolute -top-3 left-4 sm:left-6 bg-[#c5a059] text-[#080312] text-[0.62rem] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full shadow-md">
             STEP 02
           </div>
           <div>
-            <div class="w-12 h-12 rounded-xl border border-[#c5a059]/40 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-xl mb-5 mt-2 group-hover:scale-105 transition-transform">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-[#c5a059]/40 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-lg sm:text-xl mb-4 mt-1 group-hover:scale-105 transition-transform">
               🃏
             </div>
-            <h3 class="font-serif text-lg text-white mb-2 font-medium">Consecrated Spread Casting</h3>
+            <h3 class="font-serif text-base sm:text-lg text-white mb-2 font-medium">Consecrated Spread Casting</h3>
             <p class="text-[#c4b5d4] text-xs leading-relaxed">
               Using traditional Rider-Waite archetypes and Occult Academy certified spreads (Crossroads, Celtic Cross, Solar Wheel) to map the energy field surrounding your question.
             </p>
           </div>
-          <div class="mt-4 pt-3 border-t border-white/10 text-[0.7rem] text-[#e6cb87] font-semibold">
+          <div class="mt-4 pt-3 border-t border-white/10 text-[0.68rem] text-[#e6cb87] font-semibold">
             ✦ Occult Academy Certified Layouts
           </div>
         </div>
 
         <!-- Step 3 -->
-        <div class="luxury-card p-6 sm:p-7 relative flex flex-col justify-between group">
-          <div class="absolute -top-3.5 left-6 bg-[#c5a059] text-[#080312] text-[0.65rem] font-bold tracking-widest uppercase px-3 py-0.5 rounded-full shadow-md">
+        <div class="w-[76vw] sm:w-[270px] md:w-auto luxury-card p-5 sm:p-7 relative flex flex-col justify-between group">
+          <div class="absolute -top-3 left-4 sm:left-6 bg-[#c5a059] text-[#080312] text-[0.62rem] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full shadow-md">
             STEP 03
           </div>
           <div>
-            <div class="w-12 h-12 rounded-xl border border-[#c5a059]/40 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-xl mb-5 mt-2 group-hover:scale-105 transition-transform">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-[#c5a059]/40 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-lg sm:text-xl mb-4 mt-1 group-hover:scale-105 transition-transform">
               👁️
             </div>
-            <h3 class="font-serif text-lg text-white mb-2 font-medium">Intuitive Synthesis &amp; Timing</h3>
+            <h3 class="font-serif text-base sm:text-lg text-white mb-2 font-medium">Intuitive Synthesis &amp; Timing</h3>
             <p class="text-[#c4b5d4] text-xs leading-relaxed">
               Decoding hidden psychological patterns, external influences, upcoming milestones, and probable timelines with deep compassion and non-judgmental honesty.
             </p>
           </div>
-          <div class="mt-4 pt-3 border-t border-white/10 text-[0.7rem] text-[#e6cb87] font-semibold">
+          <div class="mt-4 pt-3 border-t border-white/10 text-[0.68rem] text-[#e6cb87] font-semibold">
             ✦ Insightful Timelines &amp; Dynamics
           </div>
         </div>
 
         <!-- Step 4 -->
-        <div class="luxury-card p-6 sm:p-7 relative flex flex-col justify-between group">
-          <div class="absolute -top-3.5 left-6 bg-[#c5a059] text-[#080312] text-[0.65rem] font-bold tracking-widest uppercase px-3 py-0.5 rounded-full shadow-md">
+        <div class="w-[76vw] sm:w-[270px] md:w-auto luxury-card p-5 sm:p-7 relative flex flex-col justify-between group">
+          <div class="absolute -top-3 left-4 sm:left-6 bg-[#c5a059] text-[#080312] text-[0.62rem] font-bold tracking-widest uppercase px-2.5 py-0.5 rounded-full shadow-md">
             STEP 04
           </div>
           <div>
-            <div class="w-12 h-12 rounded-xl border border-[#c5a059]/40 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-xl mb-5 mt-2 group-hover:scale-105 transition-transform">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl border border-[#c5a059]/40 bg-[#25124b] text-[#e6cb87] flex items-center justify-center text-lg sm:text-xl mb-4 mt-1 group-hover:scale-105 transition-transform">
               ✨
             </div>
-            <h3 class="font-serif text-lg text-white mb-2 font-medium">Remedies &amp; Action Blueprint</h3>
+            <h3 class="font-serif text-base sm:text-lg text-white mb-2 font-medium">Remedies &amp; Action Blueprint</h3>
             <p class="text-[#c4b5d4] text-xs leading-relaxed">
               Every reading concludes with practical remedies—color alignments, timing tips, lifestyle adjustments, and mindset shifts to dissolve blocks and achieve peaceful resolution.
             </p>
           </div>
-          <div class="mt-4 pt-3 border-t border-white/10 text-[0.7rem] text-[#e6cb87] font-semibold">
+          <div class="mt-4 pt-3 border-t border-white/10 text-[0.68rem] text-[#e6cb87] font-semibold">
             ✦ Grounded Real-World Solutions
           </div>
         </div>
@@ -590,9 +621,104 @@
       </div>
 
       <div class="mt-10 text-center">
-        <a href="#services" class="btn-luxury-outline text-xs">
-          EXPLORE READING OFFERINGS &amp; PACKAGES &rarr;
+        <a href="#featured-carousel" class="btn-luxury-solid text-xs">
+          EXPLORE 3D SACRED ARCHETYPES &darr;
         </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       SACRED TAROT ARCHETYPES — 3D INTERACTIVE CARD CAROUSEL
+       ========================================== -->
+  <section class="py-12 lg:py-20 border-t border-[#c5a059]/15 bg-gradient-to-b from-[#080312] via-[#120726] to-[#080312] relative z-10 reveal-on-scroll overflow-hidden" id="featured-carousel">
+    <div class="site-container">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl lg:max-w-4xl mx-auto mb-8 sm:mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 border border-[#c5a059]/35 bg-[#180b33]/85 text-[0.7rem] font-bold tracking-[0.2em] text-[#e6cb87] uppercase rounded-full mb-3 backdrop-blur-sm shadow-md">
+          <span>✦</span> 3D INTERACTIVE ARCHETYPES SHOWCASE
+        </div>
+        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-3">
+          Sacred Archetypes &amp; Cellular Remedies
+        </h2>
+        <p class="text-[#c4b5d4] text-sm sm:text-base leading-relaxed">
+          Swipe on mobile/tablet, drag, or click cards to glide through Mukta's 7 featured Major Arcana archetypes. Tap the center card or click <em>Reveal 3D Guidance</em> to discover its Mind-Body-Soul remedies.
+        </p>
+
+        <!-- Interactive Hint Badge -->
+        <div class="flex items-center justify-center gap-2 sm:gap-3 mt-4 text-[0.72rem] text-[#e6cb87] flex-wrap">
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-white/5 border border-[#c5a059]/25 rounded-full">
+            <span>👈</span> Swipe on Mobile / Tablet
+          </span>
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 bg-white/5 border border-[#c5a059]/25 rounded-full">
+            <span>🔄</span> Tap Center Card to Flip 3D
+          </span>
+          <button type="button" id="carousel-autoplay-btn" class="inline-flex items-center gap-1 px-3 py-1 bg-[#25124b] border border-[#e6cb87] text-[#e6cb87] rounded-full cursor-pointer hover:brightness-110 transition-all font-semibold">
+            <span>⏸</span> Auto-Play ON
+          </button>
+        </div>
+      </div>
+
+      <!-- 3D Carousel Stage Wrapper -->
+      <div class="carousel-3d-wrapper relative px-1 sm:px-10">
+        
+        <!-- Previous Arrow Button -->
+        <button type="button" class="carousel-nav-btn prev-btn" id="carousel-prev-btn" aria-label="Previous Tarot Card">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+
+        <!-- 3D Perspective Stage -->
+        <div class="carousel-3d-stage" id="carousel-3d-stage" role="region" aria-label="3D Tarot Cards Carousel">
+          <div class="carousel-3d-track" id="carousel-3d-track">
+            <!-- Dynamically populated and 3D rigged by JavaScript -->
+          </div>
+        </div>
+
+        <!-- Next Arrow Button -->
+        <button type="button" class="carousel-nav-btn next-btn" id="carousel-next-btn" aria-label="Next Tarot Card">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
+
+        <!-- Indicator Dots -->
+        <div class="carousel-dots-container" id="carousel-dots-container" role="tablist" aria-label="Card dots navigation">
+          <!-- Populated by JS -->
+        </div>
+
+        <!-- Interactive Quick Action Buttons Below Stage -->
+        <div class="flex items-center justify-center gap-3 mt-6 flex-wrap">
+          <button type="button" id="carousel-flip-btn" class="btn-luxury-solid text-xs py-2 px-4 shadow-md">
+            <span>✨</span> REVEAL 3D GUIDANCE
+          </button>
+          <button type="button" id="carousel-inspect-btn" class="btn-luxury-outline text-xs py-2 px-4">
+            <span>👁️</span> INSPECT ARCANA DETAILS
+          </button>
+          <a href="#services" class="btn-luxury-dark text-xs py-2 px-4">
+            BOOK THIS READING &rarr;
+          </a>
+        </div>
+
+        <!-- Active Card HUD / Live Info Panel -->
+        <div class="carousel-active-hud mt-6" id="carousel-active-hud">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+            <div class="md:col-span-4 border-b md:border-b-0 md:border-r border-[#c5a059]/20 pb-3 md:pb-0 md:pr-4">
+              <div class="text-[0.62rem] uppercase tracking-[0.2em] text-[#c5a059] font-bold" id="carousel-hud-arcana">Major Arcana XVII</div>
+              <h3 class="font-serif text-xl sm:text-2xl text-white font-medium mt-0.5" id="carousel-hud-title">The Star</h3>
+              <div class="text-xs text-[#fbbf24] font-semibold mt-1" id="carousel-hud-keywords">Hope, Cellular Healing, Renewal, Clarity</div>
+            </div>
+            <div class="md:col-span-8 space-y-2">
+              <p class="text-xs text-[#c4b5d4] leading-relaxed" id="carousel-hud-summary">
+                A divine blessing of peace and restoration. You are releasing fear, and a clear stream of hope is revitalizing your mind, body, and spirit.
+              </p>
+              <div class="bg-[#140826] p-2.5 rounded border-l-2 border-[#c5a059] text-[0.72rem]">
+                <strong class="text-[#e6cb87] block uppercase text-[0.6rem] tracking-wider mb-0.5">Mukta's Practical Prescription:</strong>
+                <span class="font-serif italic text-white" id="carousel-hud-guidance">Cellular healing begins with peace of mind. Practice conscious breathing, nourish your gut with clean wholesome food, and trust your recovery journey.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
@@ -601,31 +727,34 @@
   <!-- ==========================================
        TAROT READER'S PROFESSIONAL CODE OF ETHICS & CLIENT PROMISE
        ========================================== -->
-  <section class="py-12 lg:py-18 border-t border-[#c5a059]/15 bg-[#0f0721] relative z-10 reveal-on-scroll overflow-hidden" id="ethics">
+  <section class="py-8 sm:py-12 lg:py-16 border-t border-[#c5a059]/15 bg-[#0f0721] relative z-10 reveal-on-scroll overflow-hidden" id="ethics">
     <div class="site-container">
       
-      <div class="text-center max-w-3xl lg:max-w-4xl mx-auto mb-12">
-        <div class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-[#c5a059] uppercase mb-2">
+      <div class="text-center max-w-3xl lg:max-w-4xl mx-auto mb-6 sm:mb-10">
+        <div class="inline-flex items-center gap-2 text-xs font-bold tracking-[0.2em] text-[#c5a059] uppercase mb-1.5">
           <span>🛡️</span> PILLARS OF INTEGRITY
         </div>
-        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-3">
+        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-white mb-2 sm:mb-3">
           The Professional Code of Ethics
         </h2>
-        <p class="text-[#c4b5d4] text-sm sm:text-base leading-relaxed">
+        <p class="text-[#c4b5d4] text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
           Mukta Bhatnagar upholds the highest ethical standards in the sacred art of Tarot. Here is our solemn pledge to every seeker who enters this consultation space.
         </p>
+        <div class="md:hidden mt-2 text-[0.68rem] text-[#e6cb87] flex items-center justify-center gap-1">
+          <span>👉</span> <em>Swipe horizontally to view all ethical pillars</em>
+        </div>
       </div>
 
-      <!-- Ethics 4 Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Ethics 4 Cards Grid / Mobile Rail -->
+      <div class="mobile-swipe-rail md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6">
         
         <!-- Ethics 1: 100% Confidentiality -->
-        <div class="p-6 sm:p-7 rounded-xl bg-[#180b33] border border-[#c5a059]/30 shadow-xl flex flex-col justify-between">
+        <div class="w-[76vw] sm:w-[270px] md:w-auto p-5 sm:p-7 rounded-xl bg-[#180b33] border border-[#c5a059]/30 shadow-xl flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-[#25124b] border border-[#c5a059]/50 text-[#e6cb87] flex items-center justify-center text-xl mb-4">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#25124b] border border-[#c5a059]/50 text-[#e6cb87] flex items-center justify-center text-lg sm:text-xl mb-3.5">
               🔒
             </div>
-            <h3 class="font-serif text-lg text-white mb-2 font-medium">100% Strict Confidentiality</h3>
+            <h3 class="font-serif text-base sm:text-lg text-white mb-2 font-medium">100% Strict Confidentiality</h3>
             <p class="text-xs text-[#c4b5d4] leading-relaxed">
               Your identity, life questions, and personal struggles are kept in absolute confidence. Everything shared in our sanctuary remains strictly private.
             </p>
@@ -636,12 +765,12 @@
         </div>
 
         <!-- Ethics 2: Free Will & Empowerment -->
-        <div class="p-6 sm:p-7 rounded-xl bg-[#180b33] border border-[#c5a059]/30 shadow-xl flex flex-col justify-between">
+        <div class="w-[76vw] sm:w-[270px] md:w-auto p-5 sm:p-7 rounded-xl bg-[#180b33] border border-[#c5a059]/30 shadow-xl flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-[#25124b] border border-[#c5a059]/50 text-[#e6cb87] flex items-center justify-center text-xl mb-4">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#25124b] border border-[#c5a059]/50 text-[#e6cb87] flex items-center justify-center text-lg sm:text-xl mb-3.5">
               🕊️
             </div>
-            <h3 class="font-serif text-lg text-white mb-2 font-medium">Free Will &amp; Empowerment</h3>
+            <h3 class="font-serif text-base sm:text-lg text-white mb-2 font-medium">Free Will &amp; Empowerment</h3>
             <p class="text-xs text-[#c4b5d4] leading-relaxed">
               Tarot illuminates current energetic trajectories—not an unchangeable fate. You are the conscious creator of your life, empowered to make your own decisions.
             </p>
@@ -652,12 +781,12 @@
         </div>
 
         <!-- Ethics 3: Zero Fear-Mongering -->
-        <div class="p-6 sm:p-7 rounded-xl bg-[#180b33] border border-[#c5a059]/30 shadow-xl flex flex-col justify-between">
+        <div class="w-[76vw] sm:w-[270px] md:w-auto p-5 sm:p-7 rounded-xl bg-[#180b33] border border-[#c5a059]/30 shadow-xl flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-[#25124b] border border-[#c5a059]/50 text-[#e6cb87] flex items-center justify-center text-xl mb-4">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#25124b] border border-[#c5a059]/50 text-[#e6cb87] flex items-center justify-center text-lg sm:text-xl mb-3.5">
               🌱
             </div>
-            <h3 class="font-serif text-lg text-white mb-2 font-medium">Zero Fear-Mongering</h3>
+            <h3 class="font-serif text-base sm:text-lg text-white mb-2 font-medium">Zero Fear-Mongering</h3>
             <p class="text-xs text-[#c4b5d4] leading-relaxed">
               We never fabricate curses, instill superstition, or use fear tactics to manipulate seekers. Guidance is always positive, solution-oriented, and uplifting.
             </p>
@@ -668,12 +797,12 @@
         </div>
 
         <!-- Ethics 4: Practical & Grounded Remedies -->
-        <div class="p-6 sm:p-7 rounded-xl bg-[#180b33] border border-[#c5a059]/30 shadow-xl flex flex-col justify-between">
+        <div class="w-[76vw] sm:w-[270px] md:w-auto p-5 sm:p-7 rounded-xl bg-[#180b33] border border-[#c5a059]/30 shadow-xl flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-xl bg-[#25124b] border border-[#c5a059]/50 text-[#e6cb87] flex items-center justify-center text-xl mb-4">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#25124b] border border-[#c5a059]/50 text-[#e6cb87] flex items-center justify-center text-lg sm:text-xl mb-3.5">
               🌿
             </div>
-            <h3 class="font-serif text-lg text-white mb-2 font-medium">Grounded &amp; Ethical Remedies</h3>
+            <h3 class="font-serif text-base sm:text-lg text-white mb-2 font-medium">Grounded &amp; Ethical Remedies</h3>
             <p class="text-xs text-[#c4b5d4] leading-relaxed">
               Remedies are grounded in Occult Academy certified wisdom, timing protocols, color therapy, and ISMN dietetics—without demanding costly external rituals.
             </p>
@@ -691,17 +820,17 @@
   <!-- ==========================================
        SERVICES & PACKAGES SHOWCASE (Tarot, Health Coaching & Combo)
        ========================================== -->
-  <section class="py-12 lg:py-18 border-t border-[#c5a059]/15 bg-[#0f0721] relative z-10 reveal-on-scroll overflow-hidden" id="services">
+  <section class="py-8 sm:py-12 lg:py-16 border-t border-[#c5a059]/15 bg-[#0f0721] relative z-10 reveal-on-scroll overflow-hidden" id="services">
     <div class="site-container">
       
-      <div class="text-center max-w-3xl lg:max-w-4xl mx-auto mb-10">
-        <div class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-[#c5a059] uppercase mb-2">
+      <div class="text-center max-w-3xl lg:max-w-4xl mx-auto mb-6 sm:mb-10">
+        <div class="inline-flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-[#c5a059] uppercase mb-1.5">
           <span>✦</span> HOLISTIC OFFERINGS &amp; TRANSPARENT PRICING
         </div>
-        <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-normal text-white mb-3">
+        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-white mb-2 sm:mb-3">
           Spiritual Tarot &amp; Cellular Wellness Packages
         </h2>
-        <p class="text-[#c4b5d4] text-sm sm:text-base leading-relaxed">
+        <p class="text-[#c4b5d4] text-xs sm:text-sm leading-relaxed max-w-2xl mx-auto">
           Choose standalone tarot guidance for immediate clarity, cellular health coaching for physical vitality, or a 360° combo session.
         </p>
       </div>
@@ -709,54 +838,54 @@
       <!-- ==========================================
            INTERACTIVE GUIDED LIFE SITUATION ASSISTANT
            ========================================== -->
-      <div class="mb-12 p-6 sm:p-8 rounded-xl bg-gradient-to-b from-[#1c0d38] to-[#120726] border border-[#c5a059]/35 shadow-2xl">
-        <div class="text-center mb-6">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#c5a059]/20 border border-[#c5a059]/40 rounded-full text-xs font-semibold text-[#e6cb87] uppercase tracking-wider mb-2">
+      <div class="mb-8 sm:mb-10 p-4 sm:p-6 lg:p-8 rounded-xl bg-gradient-to-b from-[#1c0d38] to-[#120726] border border-[#c5a059]/35 shadow-2xl">
+        <div class="text-center mb-4 sm:mb-6">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 bg-[#c5a059]/20 border border-[#c5a059]/40 rounded-full text-[0.65rem] sm:text-xs font-semibold text-[#e6cb87] uppercase tracking-wider mb-2">
             <span>✨</span> 1-Click Interactive Package Finder
           </span>
-          <h3 class="font-serif text-xl sm:text-2xl text-white font-medium">What guidance are you seeking today?</h3>
-          <p class="text-xs sm:text-sm text-[#c4b5d4] mt-1">Tap your current life situation below to reveal Mukta's tailored remedy &amp; package recommendation:</p>
+          <h3 class="font-serif text-lg sm:text-xl text-white font-medium">What guidance are you seeking today?</h3>
+          <p class="text-[0.72rem] sm:text-xs text-[#c4b5d4] mt-1">Tap your current life situation below to reveal Mukta's tailored remedy &amp; package recommendation:</p>
         </div>
 
-        <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-6">
-          <button type="button" class="assessment-chip active" data-topic="love">
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 mb-5">
+          <button type="button" class="assessment-chip active text-xs" data-topic="love">
             <span>❤️</span> Love &amp; Relationships
           </button>
-          <button type="button" class="assessment-chip" data-topic="career">
+          <button type="button" class="assessment-chip text-xs" data-topic="career">
             <span>💼</span> Career &amp; Business Crossroads
           </button>
-          <button type="button" class="assessment-chip" data-topic="health">
-            <span>🌿</span> Gut Health &amp; Cellular Fatigue
+          <button type="button" class="assessment-chip text-xs" data-topic="health">
+            <span>🌿</span> Gut Health &amp; Fatigue
           </button>
-          <button type="button" class="assessment-chip" data-topic="reset">
-            <span>🔄</span> Full 360° Life Reset
+          <button type="button" class="assessment-chip text-xs" data-topic="reset">
+            <span>🔄</span> 360° Life Reset
           </button>
-          <button type="button" class="assessment-chip" data-topic="monthly">
-            <span>📅</span> 30-Day Spiritual Roadmap
+          <button type="button" class="assessment-chip text-xs" data-topic="monthly">
+            <span>📅</span> 30-Day Roadmap
           </button>
         </div>
 
         <!-- Dynamic Recommendation Preview Box -->
-        <div id="assessment-recommendation-card" class="bg-[#080312]/80 border border-[#e6cb87]/40 rounded-lg p-5 sm:p-6 transition-all">
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-5">
-            <div class="space-y-1.5 max-w-3xl">
-              <div class="text-xs font-bold uppercase tracking-wider text-[#e6cb87] flex items-center gap-2">
+        <div id="assessment-recommendation-card" class="bg-[#080312]/80 border border-[#e6cb87]/40 rounded-lg p-4 sm:p-5 transition-all">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="space-y-1 max-w-3xl">
+              <div class="text-[0.65rem] font-bold uppercase tracking-wider text-[#e6cb87] flex items-center gap-1.5">
                 <span>✦ RECOMMENDED GUIDANCE</span>
               </div>
-              <h4 id="rec-title" class="font-serif text-lg sm:text-xl text-white font-semibold">
+              <h4 id="rec-title" class="font-serif text-base sm:text-lg text-white font-semibold">
                 Two Questions Tarot Session &amp; Love Remedies
               </h4>
-              <p id="rec-desc" class="text-xs sm:text-sm text-[#c4b5d4] leading-relaxed">
+              <p id="rec-desc" class="text-xs text-[#c4b5d4] leading-relaxed">
                 Deep exploration of relationship dynamics, mutual energy alignment, and Occult Academy certified remedies for emotional peace.
               </p>
             </div>
-            <div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-3 shrink-0 pt-3 sm:pt-0 border-t sm:border-t-0 border-white/10">
-              <span id="rec-price" class="font-serif text-2xl sm:text-3xl text-[#e6cb87] font-semibold">₹2,100</span>
+            <div class="flex sm:flex-col items-center sm:items-end justify-between sm:justify-center gap-2.5 shrink-0 pt-2.5 sm:pt-0 border-t sm:border-t-0 border-white/10">
+              <span id="rec-price" class="font-serif text-xl sm:text-2xl text-[#e6cb87] font-semibold">₹2,100</span>
               <div class="flex items-center gap-2">
-                <button type="button" id="rec-action-btn" class="btn-luxury-solid text-xs py-2 px-4">
+                <button type="button" id="rec-action-btn" class="btn-luxury-solid text-xs py-1.5 px-3">
                   Select This &rarr;
                 </button>
-                <a id="rec-wa-btn" href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I%20would%20like%20to%20book%20the%20Two%20Questions%20Tarot%20Package%20(₹2,100)." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-pill text-xs py-2 px-3">
+                <a id="rec-wa-btn" href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I%20would%20like%20to%20book%20the%20Two%20Questions%20Tarot%20Package%20(₹2,100)." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-pill text-xs py-1.5 px-2.5">
                   WhatsApp
                 </a>
               </div>
@@ -765,140 +894,144 @@
         </div>
       </div>
 
-      <!-- 3-Column Packages Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-8">
+      <div class="md:hidden mb-2 text-[0.68rem] text-[#e6cb87] flex items-center justify-center gap-1">
+        <span>👉</span> <em>Swipe horizontally to compare tarot packages</em>
+      </div>
+
+      <!-- 3-Column Packages Grid / Mobile Rail -->
+      <div class="mobile-swipe-rail md:grid md:grid-cols-3 md:gap-6 lg:gap-8 mb-6">
         
         <!-- Package 1: One Question -->
-        <div class="luxury-card p-6 sm:p-7 flex flex-col justify-between group">
+        <div class="w-[82vw] sm:w-[340px] md:w-auto luxury-card p-5 sm:p-7 flex flex-col justify-between group">
           <div>
-            <div class="inline-block px-2.5 py-0.5 bg-[#25124b] text-[#e6cb87] text-xs font-bold uppercase tracking-wider rounded mb-3 border border-[#c5a059]/20">
+            <div class="inline-block px-2 py-0.5 bg-[#25124b] text-[#e6cb87] text-[0.62rem] font-bold uppercase tracking-wider rounded mb-2.5 border border-[#c5a059]/20">
               SPIRITUAL CLARITY
             </div>
-            <h3 class="font-serif text-2xl text-white mb-1">One Question</h3>
-            <p class="text-xs text-[#c5a059] font-semibold tracking-wide uppercase mb-5">Tarot Guidance With Remedy</p>
+            <h3 class="font-serif text-xl text-white mb-0.5">One Question</h3>
+            <p class="text-[0.65rem] text-[#c5a059] font-semibold tracking-wide uppercase mb-4">Tarot Guidance With Remedy</p>
             
-            <div class="mb-5 pb-5 border-b border-white/10">
-              <span class="font-serif text-3xl text-[#e6cb87] font-semibold">₹1,100</span>
-              <span class="text-xs text-[#8b79a5] block mt-0.5">Per Session &bull; Online or Offline</span>
+            <div class="mb-4 pb-4 border-b border-white/10">
+              <span class="font-serif text-2xl sm:text-3xl text-[#e6cb87] font-semibold">₹1,100</span>
+              <span class="text-[0.65rem] text-[#8b79a5] block mt-0.5">Per Session &bull; Online or Offline</span>
             </div>
 
-            <ul class="space-y-2.5 text-xs sm:text-sm text-[#c4b5d4] mb-6">
-              <li class="flex items-start gap-2">
+            <ul class="space-y-2 text-xs text-[#c4b5d4] mb-5">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span>Deep dive into <strong>1 specific life question</strong></span>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span>Detailed card spread interpretation</span>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span><strong>Actionable Remedy</strong> tailored to your energy</span>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span>Via WhatsApp call, Phone or Office Visit</span>
               </li>
             </ul>
           </div>
 
-          <div class="space-y-2.5 pt-2">
-            <button type="button" class="btn-select-package btn-luxury-outline w-full text-xs" data-package="one-question">
+          <div class="space-y-2 pt-2">
+            <button type="button" class="btn-select-package btn-luxury-outline w-full text-xs py-2" data-package="one-question">
               SELECT PACKAGE <span>&rarr;</span>
             </button>
-            <a href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I'd%20like%20to%20book%20the%20One%20Question%20Tarot%20Package%20(₹1,100)." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-pill w-full text-xs">
+            <a href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I'd%20like%20to%20book%20the%20One%20Question%20Tarot%20Package%20(₹1,100)." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-pill w-full text-xs py-2">
               BOOK ON WHATSAPP
             </a>
           </div>
         </div>
 
         <!-- Package 2: Two Questions -->
-        <div class="bg-gradient-to-b from-[#251052] to-[#14062c] border border-[#e6cb87]/60 hover:border-[#e6cb87] transition-all duration-300 rounded-lg p-6 sm:p-7 flex flex-col justify-between shadow-xl relative group">
-          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#e6cb87] via-[#c5a059] to-[#e6cb87] text-[#080312] text-xs font-bold uppercase tracking-widest px-3.5 py-0.5 rounded-full shadow-md">
+        <div class="w-[82vw] sm:w-[340px] md:w-auto bg-gradient-to-b from-[#251052] to-[#14062c] border border-[#e6cb87]/60 hover:border-[#e6cb87] transition-all duration-300 rounded-lg p-5 sm:p-7 flex flex-col justify-between shadow-xl relative group">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#e6cb87] via-[#c5a059] to-[#e6cb87] text-[#080312] text-[0.62rem] font-bold uppercase tracking-widest px-3 py-0.5 rounded-full shadow-md whitespace-nowrap">
             ★ MOST RECOMMENDED
           </div>
 
           <div>
-            <div class="inline-block px-2.5 py-0.5 bg-[#25124b] text-[#e6cb87] text-xs font-bold uppercase tracking-wider rounded mb-3 border border-[#c5a059]/30">
+            <div class="inline-block px-2 py-0.5 bg-[#25124b] text-[#e6cb87] text-[0.62rem] font-bold uppercase tracking-wider rounded mb-2.5 border border-[#c5a059]/30 mt-1">
               DUAL PERSPECTIVE
             </div>
-            <h3 class="font-serif text-2xl text-white mb-1">Two Questions</h3>
-            <p class="text-xs text-[#c5a059] font-semibold tracking-wide uppercase mb-5">Tarot Guidance With Remedy</p>
+            <h3 class="font-serif text-xl text-white mb-0.5">Two Questions</h3>
+            <p class="text-[0.65rem] text-[#c5a059] font-semibold tracking-wide uppercase mb-4">Tarot Guidance With Remedy</p>
             
-            <div class="mb-5 pb-5 border-b border-white/10">
-              <span class="font-serif text-3xl text-[#e6cb87] font-semibold">₹2,100</span>
-              <span class="text-xs text-[#c4b5d4] block mt-0.5">Per Session &bull; Online or Offline</span>
+            <div class="mb-4 pb-4 border-b border-white/10">
+              <span class="font-serif text-2xl sm:text-3xl text-[#e6cb87] font-semibold">₹2,100</span>
+              <span class="text-[0.65rem] text-[#c4b5d4] block mt-0.5">Per Session &bull; Online or Offline</span>
             </div>
 
-            <ul class="space-y-2.5 text-xs sm:text-sm text-[#fdfbf7] mb-6">
-              <li class="flex items-start gap-2">
+            <ul class="space-y-2 text-xs text-[#fdfbf7] mb-5">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span>In-depth inquiry for <strong>2 questions</strong> (e.g. Love &amp; Career)</span>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span>Cross-analysis of connected life influences</span>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span><strong>Targeted Remedies</strong> for both situations</span>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span>Clarity on next steps and confident decision-making</span>
               </li>
             </ul>
           </div>
 
-          <div class="space-y-2.5 pt-2">
-            <button type="button" class="btn-select-package btn-luxury-solid w-full text-xs font-bold" data-package="two-questions">
+          <div class="space-y-2 pt-2">
+            <button type="button" class="btn-select-package btn-luxury-solid w-full text-xs font-bold py-2" data-package="two-questions">
               SELECT PACKAGE <span>&rarr;</span>
             </button>
-            <a href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I'd%20like%20to%20book%20the%20Two%20Questions%20Tarot%20Package%20(₹2,100)." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-pill w-full text-xs">
+            <a href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I'd%20like%20to%20book%20the%20Two%20Questions%20Tarot%20Package%20(₹2,100)." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-pill w-full text-xs py-2">
               BOOK ON WHATSAPP
             </a>
           </div>
         </div>
 
         <!-- Package 3: Monthly Roadmap -->
-        <div class="luxury-card p-6 sm:p-7 flex flex-col justify-between group">
+        <div class="w-[82vw] sm:w-[340px] md:w-auto luxury-card p-5 sm:p-7 flex flex-col justify-between group">
           <div>
-            <div class="inline-block px-2.5 py-0.5 bg-[#25124b] text-[#e6cb87] text-xs font-bold uppercase tracking-wider rounded mb-3 border border-[#c5a059]/30">
+            <div class="inline-block px-2 py-0.5 bg-[#25124b] text-[#e6cb87] text-[0.62rem] font-bold uppercase tracking-wider rounded mb-2.5 border border-[#c5a059]/30">
               COMPLETE 30-DAY ROADMAP
             </div>
-            <h3 class="font-serif text-2xl text-white mb-1">Monthly Guidance</h3>
-            <p class="text-xs text-[#c5a059] font-semibold tracking-wide uppercase mb-5">Detailed Month Forecast with Remedy</p>
+            <h3 class="font-serif text-xl text-white mb-0.5">Monthly Guidance</h3>
+            <p class="text-[0.65rem] text-[#c5a059] font-semibold tracking-wide uppercase mb-4">Detailed Month Forecast with Remedy</p>
             
-            <div class="mb-5 pb-5 border-b border-white/10">
-              <span class="font-serif text-3xl text-[#e6cb87] font-semibold">₹5,100</span>
-              <span class="text-xs text-[#c4b5d4] block mt-0.5">Full Month Support &bull; Comprehensive</span>
+            <div class="mb-4 pb-4 border-b border-white/10">
+              <span class="font-serif text-2xl sm:text-3xl text-[#e6cb87] font-semibold">₹5,100</span>
+              <span class="text-[0.65rem] text-[#c4b5d4] block mt-0.5">Full Month Support &bull; Comprehensive</span>
             </div>
 
-            <ul class="space-y-2.5 text-xs sm:text-sm text-[#c4b5d4] mb-6">
-              <li class="flex items-start gap-2">
+            <ul class="space-y-2 text-xs text-[#c4b5d4] mb-5">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
-                <span><strong>Comprehensive 30-day forecast</strong> across Relationship, Career &amp; Health</span>
+                <span><strong>Comprehensive 30-day forecast</strong> across Relationship &amp; Career</span>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span>Unpack key monthly turning points &amp; opportunities</span>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span><strong>Holistic Monthly Remedy Plan</strong></span>
               </li>
-              <li class="flex items-start gap-2">
+              <li class="flex items-start gap-1.5">
                 <span class="text-[#e6cb87] font-bold">✓</span>
                 <span>Follow-up support throughout the month</span>
               </li>
             </ul>
           </div>
 
-          <div class="space-y-2.5 pt-2">
-            <button type="button" class="btn-select-package btn-luxury-outline w-full text-xs" data-package="monthly-guidance">
+          <div class="space-y-2 pt-2">
+            <button type="button" class="btn-select-package btn-luxury-outline w-full text-xs py-2" data-package="monthly-guidance">
               SELECT PACKAGE <span>&rarr;</span>
             </button>
-            <a href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I'd%20like%20to%20book%20the%20Monthly%20Detailed%20Guidance%20Package%20(₹5,100)." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-pill w-full text-xs">
+            <a href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I'd%20like%20to%20book%20the%20Monthly%20Detailed%20Guidance%20Package%20(₹5,100)." target="_blank" rel="noopener noreferrer" class="btn-whatsapp-pill w-full text-xs py-2">
               BOOK ON WHATSAPP
             </a>
           </div>
@@ -1081,24 +1214,30 @@
   <section class="py-12 lg:py-18 border-t border-[#c5a059]/15 bg-[#080312] relative z-10 reveal-on-scroll overflow-hidden" id="reviews">
     <div class="site-container">
       
-      <div class="max-w-3xl lg:max-w-4xl mb-10">
-        <div class="inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.2em] text-[#c5a059] uppercase mb-2">
-          <span>✦</span> REAL CLIENT EXPERIENCES
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div class="max-w-2xl">
+          <div class="inline-flex items-center gap-2 text-[0.7rem] font-semibold tracking-[0.2em] text-[#c5a059] uppercase mb-2">
+            <span>✦</span> REAL CLIENT EXPERIENCES
+          </div>
+          <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-white mb-2">
+            Transformation in Spirit & Health
+          </h2>
+          <p class="text-[#c4b5d4] text-xs sm:text-sm leading-relaxed">
+            Authentic feedback from clients across Delhi and worldwide who found clarity, resolved pending issues, and revitalized their well-being.
+          </p>
         </div>
-        <h2 class="font-serif text-2xl sm:text-3xl lg:text-4xl font-normal text-white mb-3">
-          Transformation in Spirit & Health
-        </h2>
-        <p class="text-[#c4b5d4] text-sm leading-relaxed">
-          Authentic feedback from clients across Delhi and worldwide who found clarity, resolved pending issues, and revitalized their well-being.
-        </p>
+        <div class="flex items-center gap-2 text-xs text-[#c5a059] md:hidden">
+          <span>👈 Swipe to read testimonials 👉</span>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="mobile-swipe-rail md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 pb-4 md:pb-0">
         
-        <div class="luxury-card p-6 flex flex-col justify-between">
+        <!-- Review 1 -->
+        <div class="w-[82vw] sm:w-[320px] md:w-auto luxury-card p-5 sm:p-6 flex flex-col justify-between">
           <div>
             <div class="text-[#e6cb87] text-xs tracking-widest mb-2.5">★★★★★</div>
-            <p class="font-serif italic text-[#fdfbf7] text-sm leading-relaxed mb-5">
+            <p class="font-serif italic text-[#fdfbf7] text-xs sm:text-sm leading-relaxed mb-5">
               “Mukta Bhatnagar is a wonderful good human being. She is such a fantastic Tarot card reader, her predictions are very correct. She explained in such a nice way each & every word of Tarot card meaning. I am so happy and satisfied with her predictions. Thanks 🙏”
             </p>
           </div>
@@ -1108,10 +1247,11 @@
           </div>
         </div>
 
-        <div class="luxury-card p-6 flex flex-col justify-between">
+        <!-- Review 2 -->
+        <div class="w-[82vw] sm:w-[320px] md:w-auto luxury-card p-5 sm:p-6 flex flex-col justify-between">
           <div>
             <div class="text-[#e6cb87] text-xs tracking-widest mb-2.5">★★★★★</div>
-            <p class="font-serif italic text-[#fdfbf7] text-sm leading-relaxed mb-5">
+            <p class="font-serif italic text-[#fdfbf7] text-xs sm:text-sm leading-relaxed mb-5">
               “I wanted to take a moment to express my heartfelt thanks for the tarot reading you provided. Your insights and analysis were incredibly accurate and have given me a great deal of satisfaction and clarity. I truly appreciate the time and effort you put into each reading.”
             </p>
           </div>
@@ -1121,10 +1261,11 @@
           </div>
         </div>
 
-        <div class="luxury-card p-6 flex flex-col justify-between">
+        <!-- Review 3 -->
+        <div class="w-[82vw] sm:w-[320px] md:w-auto luxury-card p-5 sm:p-6 flex flex-col justify-between">
           <div>
             <div class="text-[#e6cb87] text-xs tracking-widest mb-2.5">★★★★★</div>
-            <p class="font-serif italic text-[#fdfbf7] text-sm leading-relaxed mb-5">
+            <p class="font-serif italic text-[#fdfbf7] text-xs sm:text-sm leading-relaxed mb-5">
               “Mukta ji kis tarah se aapka thanks karu nishabd hu, bahut hi saral tarike se aapne mera kaam solve kiya. Aap real me nek dil or sahayak hain. Aapne bahut samay se ruka hua kaam bana diya. My wife and daughter dono hi santusht hain.”
             </p>
           </div>
@@ -1134,10 +1275,11 @@
           </div>
         </div>
 
-        <div class="luxury-card p-6 flex flex-col justify-between">
+        <!-- Review 4 -->
+        <div class="w-[82vw] sm:w-[320px] md:w-auto luxury-card p-5 sm:p-6 flex flex-col justify-between">
           <div>
             <div class="text-[#e6cb87] text-xs tracking-widest mb-2.5">★★★★★</div>
-            <p class="font-serif italic text-[#fdfbf7] text-sm leading-relaxed mb-5">
+            <p class="font-serif italic text-[#fdfbf7] text-xs sm:text-sm leading-relaxed mb-5">
               “मुक्ता जी, आपने जो Tarot Card Reading से अपना क़ीमती समय निकाल कर, धैर्य और संयम के साथ बताया, समझाया, उसके लिए मैं और मेरा परिवार आपके आभारी रहेंगे। आपकी बतायी बातें सही साबित हो रही हैं। आपकी रायें और सुझावों को हम दिल ❤️ से मानेंगे।”
             </p>
           </div>
@@ -1147,10 +1289,11 @@
           </div>
         </div>
 
-        <div class="luxury-card p-6 flex flex-col justify-between">
+        <!-- Review 5 -->
+        <div class="w-[82vw] sm:w-[320px] md:w-auto luxury-card p-5 sm:p-6 flex flex-col justify-between">
           <div>
             <div class="text-[#e6cb87] text-xs tracking-widest mb-2.5">★★★★★</div>
-            <p class="font-serif italic text-[#fdfbf7] text-sm leading-relaxed mb-5">
+            <p class="font-serif italic text-[#fdfbf7] text-xs sm:text-sm leading-relaxed mb-5">
               “Thank you so much mam, aapse baat karke mujhe bahut relax mila. Mera man ek dum shant ho gaya. Main bahut time se pareshan thi but aapse baat karke theek ho gayi. Aapne jo mujhe guide kiya woh mujhe bahut achha laga.”
             </p>
           </div>
@@ -1160,10 +1303,11 @@
           </div>
         </div>
 
-        <div class="luxury-card p-6 flex flex-col justify-between">
+        <!-- Review 6 -->
+        <div class="w-[82vw] sm:w-[320px] md:w-auto luxury-card p-5 sm:p-6 flex flex-col justify-between">
           <div>
             <div class="text-[#e6cb87] text-xs tracking-widest mb-2.5">★★★★★</div>
-            <p class="font-serif italic text-[#fdfbf7] text-sm leading-relaxed mb-5">
+            <p class="font-serif italic text-[#fdfbf7] text-xs sm:text-sm leading-relaxed mb-5">
               “Thank you so much Mukta Mam for my wonderful Tarot session that cleared my doubts… Now feeling light. Will get connected for Nutrition also.”
             </p>
           </div>
@@ -1538,7 +1682,7 @@
       </div>
 
       <!-- Main Footer Columns Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-10 mb-10">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-10 mb-8 sm:mb-10">
         
         <!-- Col 1: Brand Sanctuary & Bio (4 cols) -->
         <div class="lg:col-span-4">
@@ -1555,72 +1699,73 @@
             A comprehensive Delhi sanctuary uniting <strong>Occult Academy Certified Tarot Guidance</strong> with an <strong>ISMN Diploma in Integrative Dietetics</strong>. Dedicated to helping seekers achieve mental clarity, physical cellular vigor, and spiritual harmony.
           </p>
 
-          <div class="mt-3 p-3 bg-[#120726] border border-[#c5a059]/20 rounded-[4px] space-y-0.5">
-            <div class="text-[0.64rem] font-bold uppercase tracking-wider text-[#e6cb87]">Sanctuary Philosophy</div>
-            <p class="text-[0.7rem] text-[#c4b5d4] italic">
+          <div class="mt-3 p-2.5 sm:p-3 bg-[#120726] border border-[#c5a059]/20 rounded-[6px] space-y-0.5">
+            <div class="text-[0.62rem] font-bold uppercase tracking-wider text-[#e6cb87]">Sanctuary Philosophy</div>
+            <p class="text-[0.68rem] text-[#c4b5d4] italic leading-snug">
               “Seek Clarity, Find Answers • Clarity Today, Better Decisions Tomorrow, Empowered Life Always.”
             </p>
           </div>
 
           <div class="mt-3 flex items-center gap-1.5 text-xs text-[#c4b5d4] flex-wrap">
-            <span class="px-2.5 py-0.5 bg-[#25124b] border border-[#c5a059]/25 rounded text-[0.62rem] text-[#e6cb87] font-semibold">Occult Academy</span>
-            <span class="px-2.5 py-0.5 bg-[#25124b] border border-[#c5a059]/25 rounded text-[0.62rem] text-[#e6cb87] font-semibold">ISMN Diploma</span>
-            <span class="px-2.5 py-0.5 bg-[#25124b] border border-[#c5a059]/25 rounded text-[0.62rem] text-[#e6cb87] font-semibold">30+ Yrs DAV</span>
+            <span class="px-2 py-0.5 bg-[#25124b] border border-[#c5a059]/25 rounded text-[0.62rem] text-[#e6cb87] font-semibold">Occult Academy</span>
+            <span class="px-2 py-0.5 bg-[#25124b] border border-[#c5a059]/25 rounded text-[0.62rem] text-[#e6cb87] font-semibold">ISMN Diploma</span>
+            <span class="px-2 py-0.5 bg-[#25124b] border border-[#c5a059]/25 rounded text-[0.62rem] text-[#e6cb87] font-semibold">30+ Yrs DAV</span>
           </div>
         </div>
 
-        <!-- Col 2: Navigation Links (2 cols) -->
-        <div class="lg:col-span-2">
-          <div class="text-[0.7rem] font-bold tracking-[0.18em] text-[#c5a059] uppercase mb-3 flex items-center gap-1.5">
-            <span>✦</span> PLATFORM
+        <!-- Col 2: Navigation Links (3 cols - 2 column layout on mobile to save height) -->
+        <div class="lg:col-span-3">
+          <div class="text-[0.7rem] font-bold tracking-[0.18em] text-[#c5a059] uppercase mb-2.5 flex items-center gap-1.5">
+            <span>✦</span> PLATFORM QUICK LINKS
           </div>
-          <ul class="space-y-2 list-none p-0 m-0">
-            <li><a href="#home" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors">Home</a></li>
-            <li><a href="#about" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors">About Mukta</a></li>
-            <li><a href="#holistic-framework" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors">Framework</a></li>
-            <li><a href="#services" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors">Offerings &amp; Pricing</a></li>
-            <li><a href="#health-coaching" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors">Cellular Health</a></li>
-            <li><a href="#oracle" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors">Digital Altar</a></li>
-            <li><a href="#reviews" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors">Testimonials</a></li>
-            <li><a href="#faq" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors">FAQ</a></li>
-            <li><a href="#contact" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors">Book Session</a></li>
-            <li class="pt-0.5">
-              <button type="button" id="reopen-cookie-settings" class="text-xs text-[#e6cb87] hover:underline bg-transparent border-none p-0 cursor-pointer flex items-center gap-1">
-                🍪 Cookie Settings
+          <ul class="grid grid-cols-2 gap-x-3 gap-y-1.5 list-none p-0 m-0">
+            <li><a href="#home" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors py-0.5 inline-block">Home</a></li>
+            <li><a href="#about" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors py-0.5 inline-block">About Mukta</a></li>
+            <li><a href="#holistic-framework" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors py-0.5 inline-block">Framework</a></li>
+            <li><a href="#tarot-process" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors py-0.5 inline-block">Reading Process</a></li>
+            <li><a href="#featured-carousel" class="text-xs text-[#e6cb87] hover:underline transition-colors py-0.5 inline-block font-medium">3D Carousel</a></li>
+            <li><a href="#services" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors py-0.5 inline-block">Offerings</a></li>
+            <li><a href="#health-coaching" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors py-0.5 inline-block">Cellular Health</a></li>
+            <li><a href="#oracle" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors py-0.5 inline-block">Digital Altar</a></li>
+            <li><a href="#reviews" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors py-0.5 inline-block">Reviews</a></li>
+            <li><a href="#faq" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors py-0.5 inline-block">FAQ</a></li>
+            <li><a href="#contact" class="text-xs text-[#c4b5d4] hover:text-[#e6cb87] transition-colors py-0.5 inline-block font-medium text-[#e6cb87]">Book Session</a></li>
+            <li>
+              <button type="button" id="reopen-cookie-settings" class="text-[0.7rem] text-[#c4b5d4] hover:text-[#e6cb87] bg-transparent border-none p-0 cursor-pointer flex items-center gap-1 py-0.5">
+                🍪 Cookies
               </button>
             </li>
           </ul>
         </div>
 
-        <!-- Col 3: Offerings & Operational Hours (3 cols) -->
-        <div class="lg:col-span-3">
-          <div class="text-[0.7rem] font-bold tracking-[0.18em] text-[#c5a059] uppercase mb-3 flex items-center gap-1.5">
-            <span>✦</span> SERVICES &amp; HOURS
+        <!-- Col 3: Offerings & Operational Hours (2.5 cols) -->
+        <div class="lg:col-span-2">
+          <div class="text-[0.7rem] font-bold tracking-[0.18em] text-[#c5a059] uppercase mb-2.5 flex items-center gap-1.5">
+            <span>✦</span> SESSIONS &amp; HOURS
           </div>
           
-          <div class="space-y-2.5 text-xs text-[#c4b5d4]">
-            <div class="p-2.5 bg-[#140826] rounded border border-[#c5a059]/20">
-              <div class="text-white font-medium text-xs">Tarot Readings with Remedy</div>
-              <div class="text-[0.7rem] text-[#e6cb87] mt-0.5">₹1,100 (1 Q) &bull; ₹2,100 (2 Qs) &bull; ₹5,100 (Month)</div>
-              <div class="text-[0.66rem] text-[#8b79a5] mt-0.5">🕒 Hours: 8:30 PM – 10:30 PM</div>
+          <div class="space-y-2 text-xs text-[#c4b5d4]">
+            <div class="p-2 bg-[#140826] rounded border border-[#c5a059]/20">
+              <div class="text-white font-medium text-[0.75rem]">Tarot Readings</div>
+              <div class="text-[0.66rem] text-[#e6cb87]">₹1,100 &bull; ₹2,100 &bull; ₹5,100</div>
+              <div class="text-[0.62rem] text-[#8b79a5] mt-0.5">🕒 8:30 PM – 10:30 PM</div>
             </div>
 
-            <div class="p-2.5 bg-[#140826] rounded border border-[#c5a059]/20">
-              <div class="text-white font-medium text-xs">Cellular Health &amp; Nutrition</div>
-              <div class="text-[0.7rem] text-[#e6cb87] mt-0.5">ISMN Diet Blueprint &amp; Gut Health Coaching</div>
-              <div class="text-[0.66rem] text-[#8b79a5] mt-0.5">🕒 Hours: 11:30 AM – 5:30 PM</div>
+            <div class="p-2 bg-[#140826] rounded border border-[#c5a059]/20">
+              <div class="text-white font-medium text-[0.75rem]">Cellular Nutrition</div>
+              <div class="text-[0.66rem] text-[#e6cb87]">Diet &amp; Gut Health Blueprint</div>
+              <div class="text-[0.62rem] text-[#8b79a5] mt-0.5">🕒 11:30 AM – 5:30 PM</div>
             </div>
 
-            <div class="text-[0.7rem]">
-              <span class="text-white font-medium">Accepted Payments:</span>
-              <span class="text-[#e6cb87] block mt-0.5">UPI ID: 9711241456 &bull; Paytm &bull; Cash</span>
+            <div class="text-[0.66rem] text-[#c4b5d4]">
+              <span class="text-white font-medium">Payments:</span> UPI (9711241456), Paytm, Cash
             </div>
           </div>
         </div>
 
         <!-- Col 4: Delhi Office & Social Channels (3 cols) -->
         <div class="lg:col-span-3">
-          <div class="text-[0.7rem] font-bold tracking-[0.18em] text-[#c5a059] uppercase mb-3 flex items-center gap-1.5">
+          <div class="text-[0.7rem] font-bold tracking-[0.18em] text-[#c5a059] uppercase mb-2.5 flex items-center gap-1.5">
             <span>✦</span> DELHI SANCTUARY
           </div>
           
@@ -1630,7 +1775,9 @@
               <div>
                 <span class="text-white font-medium block text-xs">Office Address:</span>
                 36-A, Pocket-A, M.I.G. Flats, G.T.B. Enclave, Delhi 110093
-                <span class="text-[0.66rem] text-[#e6cb87] block mt-0.5">Plus Code: M8R8+PH7 Delhi</span>
+                <a href="https://maps.app.goo.gl/aeRiF3EVdiJj7m9D8?g_st=ac" target="_blank" rel="noopener noreferrer" class="text-[0.66rem] text-[#e6cb87] hover:underline flex items-center gap-1 mt-0.5">
+                  Open in Google Maps &rarr;
+                </a>
               </div>
             </div>
 
@@ -1649,41 +1796,35 @@
             </div>
 
             <!-- Social Connect Pills -->
-            <div class="pt-2">
-              <div class="text-[0.64rem] font-semibold uppercase tracking-wider text-[#c5a059] mb-1.5">Connect with Mukta:</div>
+            <div class="pt-1">
               <div class="flex flex-wrap gap-1.5">
-                <a href="https://instagram.com/muk.tarot1" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 bg-[#25124b] border border-[#c5a059]/30 rounded text-[0.64rem] text-[#e6cb87] hover:bg-[#e6cb87] hover:text-[#080312] transition-all font-medium">
+                <a href="https://instagram.com/muk.tarot1" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 bg-[#25124b] border border-[#c5a059]/30 rounded text-[0.62rem] text-[#e6cb87] hover:bg-[#e6cb87] hover:text-[#080312] transition-all font-medium">
                   IG: @muk.tarot1
                 </a>
-                <a href="https://instagram.com/mukta.bhatnagar.7545" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 bg-[#25124b] border border-[#c5a059]/30 rounded text-[0.64rem] text-[#e6cb87] hover:bg-[#e6cb87] hover:text-[#080312] transition-all font-medium">
+                <a href="https://instagram.com/mukta.bhatnagar.7545" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 bg-[#25124b] border border-[#c5a059]/30 rounded text-[0.62rem] text-[#e6cb87] hover:bg-[#e6cb87] hover:text-[#080312] transition-all font-medium">
                   IG: @mukta.bhatnagar.7545
                 </a>
-                <a href="https://www.facebook.com/share/1EeGBhJRNV/" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 bg-[#25124b] border border-[#c5a059]/30 rounded text-[0.64rem] text-[#e6cb87] hover:bg-[#e6cb87] hover:text-[#080312] transition-all font-medium">
+                <a href="https://www.facebook.com/share/1EeGBhJRNV/" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 bg-[#25124b] border border-[#c5a059]/30 rounded text-[0.62rem] text-[#e6cb87] hover:bg-[#e6cb87] hover:text-[#080312] transition-all font-medium">
                   Facebook
                 </a>
               </div>
             </div>
 
-            <div class="pt-1.5">
-              <a href="https://maps.app.goo.gl/aeRiF3EVdiJj7m9D8?g_st=ac" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[0.68rem] font-semibold tracking-wider uppercase text-[#e6cb87] hover:underline">
-                OPEN IN GOOGLE MAPS <span>&rarr;</span>
-              </a>
-            </div>
           </div>
         </div>
 
       </div>
 
       <!-- Footer Divider -->
-      <div class="w-full h-px bg-gradient-to-r from-transparent via-[#c5a059]/30 to-transparent mb-5"></div>
+      <div class="w-full h-px bg-gradient-to-r from-transparent via-[#c5a059]/30 to-transparent mb-4 sm:mb-5"></div>
 
       <!-- Bottom Legal Strip -->
-      <div class="flex flex-col sm:flex-row justify-between items-center gap-2.5 text-[0.68rem] font-medium tracking-wider text-[#8b79a5]">
-        <div>&copy; 2026 MUKTA BHATNAGAR &bull; HOLISTIC WELL-BEING PLATFORM (TAROT & CELLULAR HEALTH)</div>
-        <div class="flex items-center gap-3">
+      <div class="flex flex-col sm:flex-row justify-between items-center gap-2 text-[0.65rem] sm:text-[0.68rem] font-medium tracking-wider text-[#8b79a5] pb-20 md:pb-0 text-center sm:text-left">
+        <div>&copy; 2026 MUKTA BHATNAGAR &bull; HOLISTIC WELL-BEING PLATFORM</div>
+        <div class="flex items-center gap-2 sm:gap-3 flex-wrap justify-center">
           <span>GTB ENCLAVE, DELHI 110093</span>
           <span>&bull;</span>
-          <span>100% CONFIDENTIAL &amp; SACRED SESSIONS</span>
+          <span>100% CONFIDENTIAL SESSIONS</span>
         </div>
       </div>
 
@@ -1697,7 +1838,7 @@
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
   </button>
 
-  <a href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I%20would%20like%20to%20enquire%20about%20your%20Holistic%20Services." target="_blank" rel="noopener noreferrer" class="fixed bottom-5 right-5 z-40 w-12 h-12 rounded-full border border-white/40 bg-[#25D366] text-white flex items-center justify-center shadow-xl shadow-black/40 hover:scale-105 transition-all" aria-label="Direct WhatsApp message to Mukta Bhatnagar">
+  <a id="floating-whatsapp-btn" href="https://wa.me/919711241456?text=Hello%20Mukta%20Ji,%20I%20would%20like%20to%20enquire%20about%20your%20Holistic%20Services." target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn fixed bottom-5 right-5 z-40 w-12 h-12 rounded-full border border-white/40 bg-[#25D366] text-white flex items-center justify-center shadow-xl shadow-black/40 hover:scale-105 transition-all" aria-label="Direct WhatsApp message to Mukta Bhatnagar">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 9.27 20.92 6.78 19.05 4.91C17.18 3.03 14.69 2 12.04 2M12.05 3.67C14.25 3.67 16.31 4.53 17.87 6.09C19.42 7.65 20.28 9.72 20.28 11.92C20.28 16.46 16.58 20.15 12.04 20.15C10.56 20.15 9.11 19.76 7.85 19L7.55 18.83L4.43 19.65L5.26 16.61L5.06 16.29C4.24 15 3.8 13.47 3.8 11.91C3.81 7.37 7.5 3.67 12.05 3.67Z"/></svg>
   </a>
 
