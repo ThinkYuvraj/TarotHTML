@@ -118,6 +118,27 @@ img {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(197, 160, 89, 0.12);
 }
 
+/* Hero Cinematic Atmosphere Matching Reference Image */
+.hero-cinematic-bg {
+  position: relative;
+  background-color: #080312;
+  background-image: 
+    linear-gradient(to right, #080312 0%, rgba(8, 3, 18, 0.96) 40%, rgba(8, 3, 18, 0.65) 70%, rgba(8, 3, 18, 0.2) 100%),
+    url('../assets/images/hero-tarot.jpg');
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .hero-cinematic-bg {
+    background-image: 
+      linear-gradient(to bottom, rgba(8, 3, 18, 0.88) 0%, rgba(8, 3, 18, 0.96) 60%, #080312 100%),
+      url('../assets/images/hero-tarot.jpg');
+    background-position: center top;
+  }
+}
+
 .hero-square-img {
   width: 100%;
   height: 100%;
